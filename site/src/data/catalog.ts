@@ -6,7 +6,7 @@ export type Diy = 'easy' | 'moderate' | 'hard' | 'not recommended';
 export interface Brand { slug: string; name: string; blurb: string; }
 export interface ModelInfo {
   brandSlug: string; slug: string; name: string; sku: string; blurb: string;
-  logAccess?: string; notes?: string; codeFormat: string;
+  logAccess?: string; notes?: string; codeFormat: string; shortName?: string;
 }
 export interface Entry {
   brandSlug: string; modelSlug: string; code: string; slug: string; shown: string;
@@ -36,16 +36,16 @@ export const models: ModelInfo[] = [
     codeFormat: `${m.codePrefix}${codesByModel[m.sku][0].code.replace(/^(ER|E|Error )/, '')}`,
   })),
   {
-    brandSlug: 'jura', slug: 'automatic-machines', name: 'automatic machines (E6, E8, ENA, S8, J8, Z10, GIGA)', sku: 'all models', codeFormat: 'Error 2',
+    brandSlug: 'jura', slug: 'automatic-machines', name: 'automatic machines (E6, E8, ENA, S8, J8, Z10, GIGA)', shortName: '', sku: 'all models', codeFormat: 'Error 2',
     blurb: 'Jura uses the same numbered errors across its range. Errors 1 to 5 are the thermoblock heaters and their sensors, 6 is the ceramic valve, 8 is the brew group. Messages such as "Fill water tank" are separate and covered below.',
     notes: 'Numbering shifts slightly between the S/X/J/Z family and the F/E80 family; the page for each code says where it differs.',
   },
   {
-    brandSlug: 'philips-saeco', slug: 'espresso-machines', name: 'espresso machines (LatteGo, Xelsis, Incanto, Saeco)', sku: 'all models', codeFormat: 'Error 05',
+    brandSlug: 'philips-saeco', slug: 'espresso-machines', name: 'espresso machines (LatteGo, Xelsis, Incanto, Saeco)', shortName: '', sku: 'all models', codeFormat: 'Error 05',
     blurb: 'Philips publishes six user-fixable codes and says the rest need service. This page covers all of them, including the "service" codes, with what the technician will actually look at.',
   },
   {
-    brandSlug: 'delonghi', slug: 'magnifica-dinamica', name: 'Magnifica, Dinamica and PrimaDonna', sku: 'ECAM / ESAM', codeFormat: 'General Alarm',
+    brandSlug: 'delonghi', slug: 'magnifica-dinamica', name: 'Magnifica, Dinamica and PrimaDonna', shortName: 'Magnifica / Dinamica', sku: 'ECAM / ESAM', codeFormat: 'General Alarm',
     blurb: "De'Longhi shows words, not codes, on most machines. Newer models also log a numeric code (1101, 1454, 2257 and so on) which service uses; both are listed.",
     notes: 'Fix steps are the same across ECAM (Magnifica S, Dinamica, PrimaDonna) and ESAM (older Magnifica) machines unless a page says otherwise.',
   },

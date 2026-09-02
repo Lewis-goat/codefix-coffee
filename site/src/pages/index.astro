@@ -19,7 +19,7 @@ const ld = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.n
   <h2>Most-searched codes</h2>
   <div class="grid">
     {popular.map((e) => (
-      <a href={href(e)}><strong>{brandBySlug(e.brandSlug).name} {modelBy(e.brandSlug, e.modelSlug).name.split(' (')[0]} {e.shown}</strong><small>{e.meaning}</small></a>
+      <a href={href(e)}><strong>{brandBySlug(e.brandSlug).name} {modelBy(e.brandSlug, e.modelSlug).shortName ?? modelBy(e.brandSlug, e.modelSlug).name} {e.shown}</strong><small>{e.meaning}</small></a>
     ))}
   </div>
 

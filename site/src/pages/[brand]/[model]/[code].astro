@@ -10,10 +10,10 @@ const b = brandBySlug(e.brandSlug);
 const m = modelBy(e.brandSlug, e.modelSlug);
 const siblings = entriesOf(e.brandSlug, e.modelSlug).filter((x) => x.component === e.component && x.slug !== e.slug).slice(0, 6);
 const elsewhere = entries.filter((x) => x.brandSlug === e.brandSlug && x.modelSlug !== e.modelSlug && x.meaning === e.meaning).slice(0, 4);
-const modelLabel = `${b.name} ${m.name}`;
+const modelLabel = `${b.name} ${m.shortName ?? m.name}`.trim();
 const title = `${modelLabel} ${e.shown}: what it means and how to fix it`;
 const desc = `${e.shown} on the ${modelLabel} means: ${e.meaning}. The fix, the part (${e.component}), the cost, and whether it is worth repairing.`;
-const crumbs = [{ name: 'Home', href: '/' }, { name: b.name, href: `/${b.slug}` }, { name: m.name, href: `/${b.slug}/${m.slug}` }, { name: e.shown, href: href(e) }];
+const crumbs = [{ name: 'Home', href: '/' }, { name: b.name, href: `/${b.slug}` }, { name: m.shortName || m.name, href: `/${b.slug}/${m.slug}` }, { name: e.shown, href: href(e) }];
 const faq = [
   { q: `What does ${e.shown} mean on the ${modelLabel}?`, a: `${e.meaning}. ${e.quick}` },
   { q: `Can I fix ${e.shown} myself?`, a: `DIY difficulty: ${e.diy}. ${e.steps.slice(0, 2).join(' ')}` },
@@ -69,7 +69,7 @@ const ld = [
   {elsewhere.length > 0 && (
     <>
       <h2>Same fault on other {b.name} machines</h2>
-      <ul>{elsewhere.map((s) => <li><a href={href(s)}>{modelBy(s.brandSlug, s.modelSlug).name} {s.shown}</a></li>)}</ul>
+      <ul>{elsewhere.map((s) => <li><a href={href(s)}>{modelBy(s.brandSlug, s.modelSlug).shortName || modelBy(s.brandSlug, s.modelSlug).name} {s.shown}</a></li>)}</ul>
     </>
   )}
 
