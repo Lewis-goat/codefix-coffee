@@ -99,5 +99,5 @@ Break-even math (AdSense, $5 RPM): ~250 pageviews/month covers the domain. A sin
 - `site/` — Astro project, deployed to Cloudflare Pages
 - `content/keyword-map.md` — page ↔ query cluster mapping, updated monthly
 
-## Phase 1 DONE (2026-09-02) — see research/SHORTLIST.md. Pick: coffee-machine error-code lookup. Next: Phase 2 build.
+## Status: Phase 1 DONE, Phase 2 BUILT (2026-09-02). Site in site/ (Astro, 143 pages, 6 Breville models). User to-do: register domain, push to GitHub, connect Cloudflare Pages (SITE_URL env), Search Console, AdSense (set adsenseClient in src/site.ts). Then Phase 3: Jura, Saeco/Philips, DeLonghi, GE, Samsung oven.
 Run Phase 1: generate the 30–50 candidate list from the seed sources above, score them with live SERP checks via web search/browser, and hand back the ranked shortlist with the top-3 audits for the user to pick from.

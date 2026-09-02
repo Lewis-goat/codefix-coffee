@@ -1,34 +1,29 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE } from '../site';
-import { models, codesByModel, codeSlug, deepDives } from '../data/breville';
-const total = Object.values(codesByModel).reduce((n, l) => n + l.length, 0);
-const popular = Object.keys(deepDives).map((k) => {
-  const [sku, code] = k.split(':');
-  const m = models.find((x) => x.sku === sku)!;
-  return { m, code, href: `/breville/${m.slug}/${codeSlug(code)}` };
-});
+import { brands, models, entries, featured, modelBy, brandBySlug, href } from '../data/catalog';
+const popular = featured.map((f) => entries.find((e) => e.brandSlug === f.brandSlug && e.modelSlug === f.modelSlug && e.slug === f.slug)!).filter(Boolean);
 const ld = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: Astro.site?.toString(), description: SITE.description }];
 ---
-<Base title={`${SITE.name}: espresso machine error codes and how to fix them`} description={SITE.description} jsonLd={ld}>
-  <h1>Espresso machine error codes, with the fix first</h1>
-  <p class="lead">{total} Breville and Sage codes across {models.length} machines. Every page tells you what the code means, what part is at fault, what it costs, and whether it is worth repairing.</p>
+<Base title={`${SITE.name}: appliance error codes and how to fix them`} description={SITE.description} jsonLd={ld}>
+  <h1>Appliance error codes, with the fix first</h1>
+  <p class="lead">{entries.length} codes across {models.length} machine families from {brands.length} brands. Every page tells you what the code means, what part is at fault, what it costs, and whether it is worth repairing.</p>
 
-  <h2>Pick your machine</h2>
+  <h2>Pick your brand</h2>
   <div class="grid">
-    {models.map((m) => (
-      <a href={`/breville/${m.slug}`}><strong>Breville {m.name}</strong><small>{m.sku} · {codesByModel[m.sku].length} codes</small></a>
+    {brands.map((b) => (
+      <a href={`/${b.slug}`}><strong>{b.name}</strong><small>{entries.filter((e) => e.brandSlug === b.slug).length} codes</small></a>
     ))}
   </div>
 
   <h2>Most-searched codes</h2>
   <div class="grid">
-    {popular.map((p) => (
-      <a href={p.href}><strong>{p.m.name} {p.m.codePrefix}{p.code.replace(/^(ER|E|Error )/, '')}</strong><small>{codesByModel[p.m.sku].find((c) => c.code === p.code)?.meaning}</small></a>
+    {popular.map((e) => (
+      <a href={href(e)}><strong>{brandBySlug(e.brandSlug).name} {modelBy(e.brandSlug, e.modelSlug).name.split(' (')[0]} {e.shown}</strong><small>{e.meaning}</small></a>
     ))}
   </div>
 
   <h2>How to use this site</h2>
-  <p>Find the code on your screen (or in the hidden error log; each machine page explains how to open it), open the matching page and work down the steps in order. Each step is cheapest-first. Stop where the page tells you to stop.</p>
-  <p class="note">Sage is the Breville brand name in the UK and Europe; the machines and codes are identical (SES880 = BES880, and so on).</p>
+  <p>Find the code on the display (or in the hidden error log; each machine page explains how to open it), open the matching page and work down the steps in order. Each step is cheapest-first. Stop where the page tells you to stop.</p>
+  <p class="note">Sage is the Breville brand name in the UK and Europe; Saeco machines are made by Philips. The codes are identical across those brand names.</p>
 </Base>

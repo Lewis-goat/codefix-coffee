@@ -1,0 +1,52 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import { brands, models, modelsOf, entriesOf, brandBySlug } from '../../../data/catalog';
+export function getStaticPaths() {
+  return models.map((m) => ({ params: { brand: m.brandSlug, model: m.slug }, props: { m } }));
+}
+const { m } = Astro.props;
+const b = brandBySlug(m.brandSlug);
+const list = entriesOf(m.brandSlug, m.slug);
+const crumbs = [{ name: 'Home', href: '/' }, { name: b.name, href: `/${b.slug}` }, { name: m.name, href: `/${b.slug}/${m.slug}` }];
+const title = `${b.name} ${m.name} (${m.sku}) error codes: full list and fixes`;
+const desc = `All ${list.length} ${b.name} ${m.name} error codes with what each means, the part at fault and the fix.${m.logAccess ? ' Plus how to read the stored error log.' : ''}`;
+const others = modelsOf(b.slug).filter((x) => x.slug !== m.slug);
+---
+<Base title={title} description={desc} crumbs={crumbs}>
+  <h1>{b.name} {m.name} error codes</h1>
+  <p class="lead">{m.blurb}</p>
+  {m.notes && <p class="note">{m.notes}</p>}
+
+  {m.logAccess && (
+    <>
+      <h2>How to read the stored error log</h2>
+      <div class="box">{m.logAccess}</div>
+      <p class="note">Service menus are intended for technicians. Reading the log is harmless; do not change calibration values.</p>
+    </>
+  )}
+
+  <AdSlot />
+
+  <h2>All codes</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Code</th><th>Meaning</th><th>Fault</th><th>DIY</th></tr>
+    {list.map((e) => (
+      <tr>
+        <td><a href={`/${b.slug}/${m.slug}/${e.slug}`}><code>{e.shown}</code></a></td>
+        <td>{e.meaning}</td>
+        <td>{e.faultTitle}</td>
+        <td>{e.diy}</td>
+      </tr>
+    ))}
+  </table></div>
+
+  {others.length > 0 && (
+    <>
+      <h2>Other {b.name} machines</h2>
+      <div class="grid">{others.map((x) => <a href={`/${b.slug}/${x.slug}`}><strong>{x.name}</strong><small>{x.sku}</small></a>)}</div>
+    </>
+  )}
+  <h2>Other brands</h2>
+  <div class="grid">{brands.filter((x) => x.slug !== b.slug).map((x) => <a href={`/${x.slug}`}><strong>{x.name}</strong></a>)}</div>
+</Base>

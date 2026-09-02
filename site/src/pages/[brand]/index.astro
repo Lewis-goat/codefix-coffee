@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import { brands, modelsOf, entriesOf } from '../../data/catalog';
+export function getStaticPaths() {
+  return brands.map((b) => ({ params: { brand: b.slug }, props: { b } }));
+}
+const { b } = Astro.props;
+const ms = modelsOf(b.slug);
+const crumbs = [{ name: 'Home', href: '/' }, { name: b.name, href: `/${b.slug}` }];
+const total = ms.reduce((n, m) => n + entriesOf(b.slug, m.slug).length, 0);
+---
+<Base title={`${b.name} error codes: full list and fixes`} description={`${b.name} error codes for every model we cover (${total} codes), each with a fix-first page: meaning, part, cost, and whether to repair.`} crumbs={crumbs}>
+  <h1>{b.name} error codes</h1>
+  <p class="lead">{b.blurb}</p>
+  <div class="grid">
+    {ms.map((m) => (
+      <a href={`/${b.slug}/${m.slug}`}><strong>{b.name} {m.name}</strong><small>{m.sku} · {entriesOf(b.slug, m.slug).length} codes · shown as "{m.codeFormat}"</small></a>
+    ))}
+  </div>
+  {ms.length === 1 && (
+    <>
+      <h2>All {b.name} codes</h2>
+      <div class="tablewrap"><table>
+        <tr><th>Code</th><th>Meaning</th><th>DIY</th></tr>
+        {entriesOf(b.slug, ms[0].slug).map((e) => (
+          <tr><td><a href={`/${b.slug}/${ms[0].slug}/${e.slug}`}><code>{e.shown}</code></a></td><td>{e.meaning}</td><td>{e.diy}</td></tr>
+        ))}
+      </table></div>
+    </>
+  )}
+</Base>
