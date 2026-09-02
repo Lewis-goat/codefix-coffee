@@ -1,0 +1,542 @@
+{
+ "BES990": [
+  {
+   "code": "ER01",
+   "meaning": "Steam boiler temperature sensor not detected at startup"
+  },
+  {
+   "code": "ER02",
+   "meaning": "Steam boiler temperature sensor lost during operation"
+  },
+  {
+   "code": "ER03",
+   "meaning": "Steam boiler temperature sensor short circuit at startup"
+  },
+  {
+   "code": "ER04",
+   "meaning": "Steam boiler temperature sensor short circuit during operation"
+  },
+  {
+   "code": "ER05",
+   "meaning": "Coffee boiler temperature sensor not detected at startup"
+  },
+  {
+   "code": "ER06",
+   "meaning": "Coffee boiler temperature sensor lost during operation"
+  },
+  {
+   "code": "ER07",
+   "meaning": "Coffee boiler temperature sensor short circuit at startup"
+  },
+  {
+   "code": "ER08",
+   "meaning": "Coffee boiler temperature sensor short circuit during operation"
+  },
+  {
+   "code": "ER09",
+   "meaning": "Group head temperature sensor not detected at startup"
+  },
+  {
+   "code": "ER10",
+   "meaning": "Group head temperature sensor lost during operation"
+  },
+  {
+   "code": "ER11",
+   "meaning": "Group head temperature sensor short circuit at startup"
+  },
+  {
+   "code": "ER12",
+   "meaning": "Group head temperature sensor short circuit during operation"
+  },
+  {
+   "code": "ER13",
+   "meaning": "Steam wand temperature sensor not detected at startup"
+  },
+  {
+   "code": "ER14",
+   "meaning": "Steam wand temperature sensor lost during operation"
+  },
+  {
+   "code": "ER15",
+   "meaning": "Steam wand temperature sensor short circuit at startup"
+  },
+  {
+   "code": "ER16",
+   "meaning": "Steam wand temperature sensor short circuit during operation"
+  },
+  {
+   "code": "ER17",
+   "meaning": "Coffee boiler temperature not rising as expected"
+  },
+  {
+   "code": "ER18",
+   "meaning": "Steam boiler temperature not rising as expected"
+  },
+  {
+   "code": "ER19",
+   "meaning": "Group head temperature not rising as expected"
+  },
+  {
+   "code": "ER20",
+   "meaning": "Steam boiler water level or pump issue detected"
+  },
+  {
+   "code": "ER21",
+   "meaning": "Steam boiler high level probe fault detected"
+  },
+  {
+   "code": "ER22",
+   "meaning": "Flow meter signal problem at startup"
+  },
+  {
+   "code": "ER23",
+   "meaning": "Flow meter signal problem during brewing"
+  },
+  {
+   "code": "ER24",
+   "meaning": "Coffee boiler water level probe fault"
+  },
+  {
+   "code": "ER25",
+   "meaning": "Coffee boiler overheated above target temperature"
+  },
+  {
+   "code": "ER26",
+   "meaning": "Steam boiler overheated above target temperature"
+  },
+  {
+   "code": "ER27",
+   "meaning": "Group head overheated above target temperature"
+  },
+  {
+   "code": "ER28",
+   "meaning": "Communication fault between control boards"
+  },
+  {
+   "code": "ER29",
+   "meaning": "Grinder motor overheated"
+  },
+  {
+   "code": "ER30",
+   "meaning": "Grinder motor timed out during operation"
+  },
+  {
+   "code": "ER31",
+   "meaning": "Tamping motor timed out during operation"
+  },
+  {
+   "code": "ER32",
+   "meaning": "Steam boiler leak or refill failure detected"
+  }
+ ],
+ "BES985": [
+  {
+   "code": "E1",
+   "meaning": "Ferro heater temperature sensor open circuit detected"
+  },
+  {
+   "code": "E2",
+   "meaning": "Ferro heater temperature sensor short circuit detected"
+  },
+  {
+   "code": "E3",
+   "meaning": "Steam wand temperature sensor open circuit detected"
+  },
+  {
+   "code": "E4",
+   "meaning": "Steam wand temperature sensor short circuit detected"
+  },
+  {
+   "code": "E5",
+   "meaning": "Group head heater temperature sensor open circuit detected"
+  },
+  {
+   "code": "E6",
+   "meaning": "Group head heater temperature sensor short circuit detected"
+  },
+  {
+   "code": "E7",
+   "meaning": "Group head heater unable to reach temperature, likely due to blown thermal fuse or power fault"
+  },
+  {
+   "code": "E8",
+   "meaning": "Flow meter count error indicating abnormal water flow measurement during priming"
+  },
+  {
+   "code": "E9",
+   "meaning": "Electrical fast protection triggered during heater operation"
+  },
+  {
+   "code": "E10",
+   "meaning": "Grinder motor overheated or no motor speed detected"
+  },
+  {
+   "code": "E11",
+   "meaning": "Grinder blocked causing excessive current draw"
+  },
+  {
+   "code": "E12",
+   "meaning": "Grinder speed sensor not detecting normal operation"
+  },
+  {
+   "code": "E13",
+   "meaning": "Grinder motor operation timed out before completing grind cycle"
+  },
+  {
+   "code": "E14",
+   "meaning": "Pressure sensor signal missing during steam operation"
+  },
+  {
+   "code": "E15",
+   "meaning": "Zero-cross electrical signal not detected during manual operation"
+  },
+  {
+   "code": "E16",
+   "meaning": "Steam wand blocked or abnormal pressure detected during milk operation"
+  },
+  {
+   "code": "E17",
+   "meaning": "Auger motor failure with no current draw detected"
+  },
+  {
+   "code": "E18",
+   "meaning": "Auger motor overcurrent detected due to mechanical resistance or jam"
+  },
+  {
+   "code": "E19",
+   "meaning": "Leakage current protection triggered multiple times indicating electrical safety fault"
+  }
+ ],
+ "BES980": [
+  {
+   "code": "Error 1",
+   "meaning": "Steam boiler temperature sensor not detected at startup"
+  },
+  {
+   "code": "Error 2",
+   "meaning": "Steam boiler temperature sensor lost during operation"
+  },
+  {
+   "code": "Error 3",
+   "meaning": "Steam boiler temperature sensor short circuit at startup"
+  },
+  {
+   "code": "Error 4",
+   "meaning": "Steam boiler temperature sensor short circuit during operation"
+  },
+  {
+   "code": "Error 5",
+   "meaning": "Coffee boiler temperature sensor not detected at startup"
+  },
+  {
+   "code": "Error 6",
+   "meaning": "Coffee boiler temperature sensor lost during operation"
+  },
+  {
+   "code": "Error 7",
+   "meaning": "Coffee boiler temperature sensor short circuit at startup"
+  },
+  {
+   "code": "Error 8",
+   "meaning": "Coffee boiler temperature sensor short circuit during operation"
+  },
+  {
+   "code": "Error 9",
+   "meaning": "Group head temperature sensor not detected at startup"
+  },
+  {
+   "code": "Error 10",
+   "meaning": "Group head temperature sensor lost during operation"
+  },
+  {
+   "code": "Error 11",
+   "meaning": "Group head temperature sensor short circuit at startup"
+  },
+  {
+   "code": "Error 12",
+   "meaning": "Group head temperature sensor short circuit during operation"
+  },
+  {
+   "code": "Error 13",
+   "meaning": "Steam wand temperature sensor not detected at startup"
+  },
+  {
+   "code": "Error 14",
+   "meaning": "Steam wand temperature sensor lost during operation"
+  },
+  {
+   "code": "Error 15",
+   "meaning": "Steam wand temperature sensor short circuit at startup"
+  },
+  {
+   "code": "Error 16",
+   "meaning": "Steam wand temperature sensor short circuit during operation"
+  },
+  {
+   "code": "Error 17",
+   "meaning": "Coffee boiler not heating up normally"
+  },
+  {
+   "code": "Error 18",
+   "meaning": "Steam boiler not heating up normally"
+  },
+  {
+   "code": "Error 19",
+   "meaning": "Group head not heating up normally"
+  },
+  {
+   "code": "Error 20",
+   "meaning": "Steam boiler water level or pump issue detected"
+  },
+  {
+   "code": "Error 21",
+   "meaning": "Steam boiler level probe mismatch detected"
+  },
+  {
+   "code": "Error 22",
+   "meaning": "Flow meter signal problem at startup"
+  },
+  {
+   "code": "Error 23",
+   "meaning": "Flow meter signal problem during brewing"
+  },
+  {
+   "code": "Error 24",
+   "meaning": "Coffee boiler water level probe fault"
+  },
+  {
+   "code": "Error 25",
+   "meaning": "Coffee boiler overheated above target temperature"
+  },
+  {
+   "code": "Error 26",
+   "meaning": "Steam boiler overheated above target temperature"
+  },
+  {
+   "code": "Error 27",
+   "meaning": "Group head overheated above target temperature"
+  },
+  {
+   "code": "Error 28",
+   "meaning": "Communication fault between control boards"
+  },
+  {
+   "code": "Error 29",
+   "meaning": "Grinder motor overheated"
+  },
+  {
+   "code": "Error 30",
+   "meaning": "Grinder motor timed out during operation"
+  },
+  {
+   "code": "Error 31",
+   "meaning": "Tamping motor timed out during operation"
+  },
+  {
+   "code": "Error 32",
+   "meaning": "Steam boiler leak or refill failure detected"
+  }
+ ],
+ "BES880": [
+  {
+   "code": "ER01",
+   "meaning": "Ferro heater temperature sensor open circuit detected at startup"
+  },
+  {
+   "code": "ER02",
+   "meaning": "Ferro heater temperature sensor open circuit detected during operation"
+  },
+  {
+   "code": "ER03",
+   "meaning": "Ferro heater temperature sensor short circuit detected at startup"
+  },
+  {
+   "code": "ER04",
+   "meaning": "Ferro heater temperature sensor short circuit detected during operation"
+  },
+  {
+   "code": "ER05",
+   "meaning": "Milk jug temperature sensor open circuit detected at startup"
+  },
+  {
+   "code": "ER06",
+   "meaning": "Milk jug temperature sensor open circuit detected during operation"
+  },
+  {
+   "code": "ER07",
+   "meaning": "Milk jug temperature sensor short circuit detected at startup"
+  },
+  {
+   "code": "ER08",
+   "meaning": "Milk jug temperature sensor short circuit detected during operation"
+  },
+  {
+   "code": "ER09",
+   "meaning": "Inline temperature sensor open circuit detected at startup"
+  },
+  {
+   "code": "ER10",
+   "meaning": "Inline temperature sensor open circuit detected during operation"
+  },
+  {
+   "code": "ER11",
+   "meaning": "Inline temperature sensor short circuit detected at startup"
+  },
+  {
+   "code": "ER12",
+   "meaning": "Inline temperature sensor short circuit detected during operation"
+  },
+  {
+   "code": "ER13",
+   "meaning": "Flow meter count error detected at startup, indicating a water measurement issue"
+  },
+  {
+   "code": "ER14",
+   "meaning": "Flow meter count error detected during operation, indicating a water measurement issue"
+  },
+  {
+   "code": "ER15",
+   "meaning": "Communication fault detected between internal electronic modules"
+  },
+  {
+   "code": "ER16",
+   "meaning": "Grinder motor overheated and was shut down for protection"
+  },
+  {
+   "code": "ER17",
+   "meaning": "Grinder motor operation timed out before completing its task"
+  },
+  {
+   "code": "ER18",
+   "meaning": "E-fast protection triggered due to a detected electrical or safety fault"
+  }
+ ],
+ "BES881": [
+  {
+   "code": "ER01",
+   "meaning": "Ferro heater temperature sensor open circuit detected at startup"
+  },
+  {
+   "code": "ER02",
+   "meaning": "Ferro heater temperature sensor open circuit detected during operation"
+  },
+  {
+   "code": "ER03",
+   "meaning": "Ferro heater temperature sensor short circuit detected at startup"
+  },
+  {
+   "code": "ER04",
+   "meaning": "Ferro heater temperature sensor short circuit detected during operation"
+  },
+  {
+   "code": "ER05",
+   "meaning": "Milk jug temperature sensor open circuit detected at startup"
+  },
+  {
+   "code": "ER06",
+   "meaning": "Milk jug temperature sensor open circuit detected during operation"
+  },
+  {
+   "code": "ER07",
+   "meaning": "Milk jug temperature sensor short circuit detected at startup"
+  },
+  {
+   "code": "ER08",
+   "meaning": "Milk jug temperature sensor short circuit detected during operation"
+  },
+  {
+   "code": "ER09",
+   "meaning": "Inline temperature sensor open circuit detected at startup"
+  },
+  {
+   "code": "ER10",
+   "meaning": "Inline temperature sensor open circuit detected during operation"
+  },
+  {
+   "code": "ER11",
+   "meaning": "Inline temperature sensor short circuit detected at startup"
+  },
+  {
+   "code": "ER12",
+   "meaning": "Inline temperature sensor short circuit detected during operation"
+  },
+  {
+   "code": "ER13",
+   "meaning": "Flow meter count error detected at startup, indicating a water measurement issue"
+  },
+  {
+   "code": "ER14",
+   "meaning": "Flow meter count error detected during operation, indicating a water measurement issue"
+  },
+  {
+   "code": "ER15",
+   "meaning": "Communication fault detected between internal electronic modules"
+  },
+  {
+   "code": "ER16",
+   "meaning": "Grinder motor overheated and was shut down for protection"
+  },
+  {
+   "code": "ER17",
+   "meaning": "Grinder motor operation timed out before completing its task"
+  },
+  {
+   "code": "ER18",
+   "meaning": "E-fast protection triggered due to a detected electrical or safety fault"
+  }
+ ],
+ "BES920": [
+  {
+   "code": "00",
+   "meaning": "Steam boiler temperature sensor not detected"
+  },
+  {
+   "code": "01",
+   "meaning": "Steam boiler temperature sensor short circuit"
+  },
+  {
+   "code": "02",
+   "meaning": "Coffee boiler temperature sensor not detected"
+  },
+  {
+   "code": "03",
+   "meaning": "Coffee boiler temperature sensor short circuit"
+  },
+  {
+   "code": "04",
+   "meaning": "Group head heater temperature sensor not detected"
+  },
+  {
+   "code": "05",
+   "meaning": "Group head heater temperature sensor short circuit"
+  },
+  {
+   "code": "06",
+   "meaning": "Steam boiler pump issue during startup"
+  },
+  {
+   "code": "07",
+   "meaning": "Steam boiler water level or pump fault"
+  },
+  {
+   "code": "08",
+   "meaning": "Coffee boiler pump or flow issue"
+  },
+  {
+   "code": "09",
+   "meaning": "Coffee boiler water level fault"
+  },
+  {
+   "code": "10",
+   "meaning": "Coffee boiler overheating detected"
+  },
+  {
+   "code": "11",
+   "meaning": "Steam boiler overheating detected"
+  },
+  {
+   "code": "12",
+   "meaning": "Group head overheating detected"
+  }
+ ]
+}

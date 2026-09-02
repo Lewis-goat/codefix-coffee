@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
+---
+<Base title={`Privacy policy — ${SITE.name}`} description={`Privacy policy for ${SITE.name}: what is collected, cookies, advertising and your choices.`} crumbs={[{ name: 'Home', href: '/' }, { name: 'Privacy', href: '/privacy' }]}>
+  <h1>Privacy policy</h1>
+  <p>Last updated {SITE.updated}.</p>
+  <h2>What we collect</h2>
+  <p>{SITE.name} is a static website. We do not require accounts and we do not collect personal information ourselves. Our hosting provider (Cloudflare) records standard server logs, including IP address, browser type and pages requested, for security and performance, retained for a limited period. We use privacy-preserving, cookieless aggregate analytics (Cloudflare Web Analytics) to see which pages are read.</p>
+  <h2>Advertising and cookies</h2>
+  <p>We display advertising served by Google AdSense. Google and its partners may use cookies or similar technologies to serve ads based on your prior visits to this and other websites, and to measure ad performance. You can opt out of personalised advertising at <a href="https://www.google.com/settings/ads" rel="nofollow">Google Ads Settings</a> and learn how Google uses data at <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow">policies.google.com/technologies/partner-sites</a>. Visitors in the EEA, UK and Switzerland are shown a consent notice before personalised ads are served.</p>
+  <h2>Your rights</h2>
+  <p>Depending on where you live you may have rights to access, correct or delete personal data held about you. Because we hold none ourselves, requests about advertising data should be directed to Google via the links above. For anything else, <a href="/contact">contact us</a>.</p>
+  <h2>Children</h2>
+  <p>This site is not directed at children under 16 and we knowingly collect no data from them.</p>
+  <h2>Changes</h2>
+  <p>We will update this page if our practices change; the date above tells you when.</p>
+</Base>

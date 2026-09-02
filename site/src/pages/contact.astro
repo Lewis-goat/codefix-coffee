@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site';
+---
+<Base title={`Contact ${SITE.name}`} description="Send a correction or a question about an espresso machine error code." crumbs={[{ name: 'Home', href: '/' }, { name: 'Contact', href: '/contact' }]}>
+  <h1>Contact</h1>
+  <p>Email <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>. Include the machine model number (on the base plate) and the exact code shown.</p>
+  <p>We read everything but cannot diagnose individual machines by email.</p>
+</Base>

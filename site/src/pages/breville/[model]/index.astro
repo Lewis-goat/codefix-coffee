@@ -1,0 +1,42 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AdSlot from '../../../components/AdSlot.astro';
+import { models, codesByModel, codeSlug, playbooks } from '../../../data/breville';
+export function getStaticPaths() {
+  return models.map((m) => ({ params: { model: m.slug }, props: { m } }));
+}
+const { m } = Astro.props;
+const codes = codesByModel[m.sku];
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Breville / Sage', href: '/breville' }, { name: m.name, href: `/breville/${m.slug}` }];
+const title = `Breville ${m.name} (${m.sku}) error codes: full list and fixes`;
+const desc = `All ${codes.length} Breville / Sage ${m.name} ${m.sku} error codes with what each means, the part at fault and the fix. Plus how to open the hidden error log.`;
+---
+<Base title={title} description={desc} crumbs={crumbs}>
+  <h1>Breville {m.name} ({m.sku}) error codes</h1>
+  <p class="lead">{codes.length} codes. The {m.name} has {m.boilers}; most codes are one of its temperature sensors, a water-level or flow fault, or the grinder.</p>
+  {m.notes && <p class="note">{m.notes}</p>}
+
+  <h2>How to read the stored error log</h2>
+  <div class="box">{m.logAccess}</div>
+  <p class="note">Service mode is intended for technicians. Reading the log is harmless; do not change calibration values.</p>
+
+  <AdSlot />
+
+  <h2>All {m.sku} codes</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Code</th><th>Meaning</th><th>Fault type</th><th>DIY</th></tr>
+    {codes.map((c) => (
+      <tr>
+        <td><a href={`/breville/${m.slug}/${codeSlug(c.code)}`}><code>{m.codePrefix}{c.code.replace(/^(ER|E|Error )/, '')}</code></a></td>
+        <td>{c.meaning}</td>
+        <td>{playbooks[c.category].title}</td>
+        <td>{playbooks[c.category].diy}</td>
+      </tr>
+    ))}
+  </table></div>
+
+  <h2>Other Breville machines</h2>
+  <div class="grid">
+    {models.filter((x) => x.sku !== m.sku).map((x) => <a href={`/breville/${x.slug}`}><strong>{x.name}</strong><small>{x.sku}</small></a>)}
+  </div>
+</Base>
