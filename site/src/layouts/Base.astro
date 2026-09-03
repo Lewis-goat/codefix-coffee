@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../site';
+import AdSlot from '../components/AdSlot.astro';
 interface Props {
   title: string;
   description: string;
@@ -32,7 +33,13 @@ const allLd = [...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
   <link rel="sitemap" href="/sitemap-index.xml" />
   {allLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   {SITE.adsenseClient && (
-    <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClient}`} crossorigin="anonymous"></script>
+    <>
+      <meta name="google-adsense-account" content={SITE.adsenseClient} />
+      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClient}`} crossorigin="anonymous"></script>
+    </>
+  )}
+  {SITE.cfAnalyticsToken && (
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${SITE.cfAnalyticsToken}"}`}></script>
   )}
   <style is:global>
     :root { --ink:#1f1a17; --muted:#6b625c; --bg:#fbf8f4; --card:#fff; --line:#e6ddd4; --accent:#8b4a2b; --ok:#2e7d4f; --warn:#b26a00; --bad:#b3261e; }
@@ -83,9 +90,10 @@ const allLd = [...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
       </nav>
     )}
     <slot />
+    <AdSlot slot={SITE.adSlotFooter} />
   </main>
   <footer>
-    <div>{SITE.name} — independent repair reference. Not affiliated with Breville, Sage or any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty. Last reviewed {SITE.updated}.</div>
+    <div>{SITE.name} — independent repair reference. Not affiliated with any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty. Last reviewed {SITE.updated}.</div>
     <div><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/contact">Contact</a></div>
   </footer>
 </body>
