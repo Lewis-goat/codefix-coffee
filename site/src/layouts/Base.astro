@@ -9,11 +9,23 @@ interface Props {
 }
 const { title, description, jsonLd = [], crumbs = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const siteUrl = Astro.site?.toString() ?? 'https://codefixcoffee.com/';
+const websiteLd = {
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  name: 'CodeFix', alternateName: ['CodeFix Coffee', 'codefixcoffee.com'],
+  url: siteUrl,
+  description: 'Look up espresso machine and appliance error codes, with the fix first.',
+};
+const organizationLd = {
+  '@context': 'https://schema.org', '@type': 'Organization',
+  name: 'CodeFix', url: siteUrl,
+  description: 'Independent reference for appliance error codes and repairs.',
+};
 const breadcrumbLd = crumbs.length ? {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, Astro.site).toString() })),
 } : null;
-const allLd = [...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
+const allLd = [websiteLd, organizationLd, ...jsonLd, ...(breadcrumbLd ? [breadcrumbLd] : [])];
 ---
 <!doctype html>
 <html lang="en">
