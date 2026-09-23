@@ -145,6 +145,17 @@ const juraEntries = make('jura', 'automatic-machines', SVC_COFFEE, [
     stop: 'Valve assemblies are fiddly and the machine must be fully drained first; this is a common professional repair.', partCost: 'Ceramic valve assembly $60 to $120; seal kit $10 to $20.', worth: 'Yes, the machines that have this valve are worth keeping.',
   },
   {
+    code: 'Error 7', shown: 'Error 7', meaning: 'Ceramic valve / multi-valve or brew-group drive fault (valve did not reach its commanded position)', component: 'ceramic (multi) valve, its encoder or the brew group drive', severity: 'high', diy: 'hard', faultTitle: 'valve or brew-group drive fault',
+    quick: 'Error 7 is the valve-side sibling of Error 8: the machine commanded the ceramic valve (on GIGA models the multi-valve) to a position and never saw it arrive, or the brew-group drive misbehaved on the way. Practitioner tables describe it as a ceramic valve, encoder, or brew-group malfunction; on GIGA X3c/X8c it specifically indicates a faulty multi-valve, and on the GIGA 6 it is often reported as a motor or pump blockage. It is one of the few Jura codes with no reliable user-level fix.',
+    steps: [
+      'Unplug for five minutes and restart. Like Error 8, the startup cycle re-homes the brew group and valve; a transient stall can clear.',
+      'Rule out the cheap causes: empty the grounds container and drip tray, check nothing is jammed in the coffee outlet, and run one full cleaning programme uninterrupted.',
+      'If it persists, the valve assembly itself is the usual finding — a cracked ceramic disc, a jammed actuator, or a failed position encoder. On GIGA machines the multi-valve is the documented culprit and is normally a Jura service job.',
+      'DIYers replace the valve assembly or brew-group motor (parts exist for most models), but it means security screws, mains voltage, and recalibrating the mechanism afterwards.',
+    ],
+    stop: 'This is the code where honest advice is "bench repair unless you already service these machines." Get the quote before ordering parts.', partCost: 'Ceramic/multi-valve assembly roughly $60 to $150 by model; brew-group motor $40 to $70; service labour typically exceeds the part.', worth: 'Weigh it: on high-end Z and GIGA machines yes; on a 10-year-old entry E or ENA, compare the quote with a refurbished unit.',
+  },
+  {
     code: 'Error 8', shown: 'Error 8', meaning: 'Brew group failed to complete its cycle (encoder saw fewer motor revolutions than expected)', component: 'brew group, drive motor and encoder', severity: 'medium', diy: 'moderate', faultTitle: 'brew group cycle failure',
     quick: 'The brew group motor was told to move the brew unit through its cycle and the position encoder did not see it complete. The brew unit is sticky with old coffee oils, something is jammed in it, the grounds container is overfull, or the drive (gears, motor, encoder, or the power supply under load) has a fault. Some Jura guides call Error 8 a cleaning reminder; on most machines it is the brew unit physically not completing, which is why a cleaning cycle often fixes it.',
     steps: ['Switch off, empty the grounds container and drip tray, and restart. The brew unit does a full cycle on startup; listen for it stalling.', 'Run the cleaning programme with a Jura tablet (Maintenance > Cleaning). Let it finish uninterrupted, about 15 minutes.', 'If it recurs, remove the brew unit (models where it is accessible) or open the machine and check for a coffee puck jammed in the outlet, a snapped drainage valve, or a dry, stiff mechanism. Clean and lubricate with food-safe silicone grease.', 'Check the motor mounting for cracks and the encoder wiring. A motor that turns slowly under load points at the transformer or power board.'],
@@ -443,6 +454,7 @@ export const featured: { brandSlug: string; modelSlug: string; slug: string }[] 
     return { brandSlug: 'breville', modelSlug: m.slug, slug: codeSlug(code) };
   }),
   { brandSlug: 'jura', modelSlug: 'automatic-machines', slug: 'error-2' },
+  { brandSlug: 'jura', modelSlug: 'automatic-machines', slug: 'error-7' },
   { brandSlug: 'jura', modelSlug: 'automatic-machines', slug: 'error-8' },
   { brandSlug: 'philips-saeco', modelSlug: 'espresso-machines', slug: 'error-05' },
   { brandSlug: 'delonghi', modelSlug: 'magnifica-dinamica', slug: 'general-alarm-code-1101-1512' },

@@ -4,14 +4,57 @@ import { brands, modelsOf, entriesOf } from '../../data/catalog';
 export function getStaticPaths() {
   return brands.map((b) => ({ params: { brand: b.slug }, props: { b } }));
 }
+// Freely-licensed photos (Wikimedia Commons). The visible caption carries author, license,
+// source link and date, meeting each CC license's attribution requirement.
+const PHOTOS: Record<string, { file: string; alt: string; author: string; license: string; date: string; src: string }> = {
+  breville: {
+    file: '/img/breville.jpg',
+    alt: 'Breville Bambino espresso machine with a bottomless portafilter and a scale',
+    author: 'Weirdwiki64', license: 'CC BY-SA 4.0', date: '6 Apr 2022',
+    src: 'https://commons.wikimedia.org/wiki/File:Breville_Bambino_with_bottomless_portafilter_and_scale..webp',
+  },
+  delonghi: {
+    file: '/img/delonghi.png',
+    alt: 'De\'Longhi espresso machines',
+    author: 'Angela CoffeeRank', license: 'CC BY 2.0', date: '9 Dec 2020',
+    src: 'https://commons.wikimedia.org/wiki/File:De%27Longhi_espresso_machines.png',
+  },
+  'philips-saeco': {
+    file: '/img/saeco.jpg',
+    alt: 'Saeco automatic coffee machine',
+    author: 'Matti Blume', license: 'CC BY-SA 4.0', date: '19 Sep 2025',
+    src: 'https://commons.wikimedia.org/wiki/File:Saeco_(LRM_20250919_142532).jpg',
+  },
+  samsung: {
+    file: '/img/samsung.jpg',
+    alt: 'Samsung Flex Duo range with dual-door oven',
+    author: 'Maurizio Pesce', license: 'CC BY 2.0', date: '10 Jan 2015',
+    src: 'https://commons.wikimedia.org/wiki/File:Samsung_Flex_Duo_Range_with_Dual_Door_Oven_(16656139477).jpg',
+  },
+  ge: {
+    file: '/img/ge.jpg',
+    alt: 'GE Hotpoint appliance',
+    author: 'Nitram242', license: 'CC BY 2.0', date: '13 Jul 2012',
+    src: 'https://commons.wikimedia.org/wiki/File:GE_Hotpoint_(7568364868).jpg',
+  },
+};
 const { b } = Astro.props;
 const ms = modelsOf(b.slug);
 const crumbs = [{ name: 'Home', href: '/' }, { name: b.name, href: `/${b.slug}` }];
 const total = ms.reduce((n, m) => n + entriesOf(b.slug, m.slug).length, 0);
+const photo = PHOTOS[b.slug];
 ---
 <Base title={`${b.name} error codes: full list and fixes`} description={`${b.name} error codes for every model we cover (${total} codes), each with a fix-first page: meaning, part, cost, and whether to repair.`} crumbs={crumbs}>
   <h1>{b.name} error codes</h1>
   <p class="lead">{b.blurb}</p>
+  {photo && (
+    <figure class="brand-photo">
+      <img src={photo.file} alt={photo.alt} loading="lazy" width="640" />
+      <figcaption>
+        Photo: {photo.author}, {photo.license}, via <a href={photo.src} rel="nofollow">Wikimedia Commons</a> ({photo.date})
+      </figcaption>
+    </figure>
+  )}
   <div class="grid">
     {ms.map((m) => (
       <a href={`/${b.slug}/${m.slug}`}><strong>{b.name} {m.name}</strong><small>{m.sku} · {entriesOf(b.slug, m.slug).length} codes · shown as "{m.codeFormat}"</small></a>
