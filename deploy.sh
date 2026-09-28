@@ -2,6 +2,7 @@
 # Rebuild CodeFix and push to GitHub Pages (repo: Lewis-goat/codefix-coffee).
 # Usage: zsh ~/niche-site/deploy.sh
 set -e
+git() { command git -c user.name="Lewis-goat" -c user.email="lucas@kinsey.io" "$@"; }
 cd "$(dirname "$0")/site"
 
 SITE_URL=https://codefixcoffee.com \

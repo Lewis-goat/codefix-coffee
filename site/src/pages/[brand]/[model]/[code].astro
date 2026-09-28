@@ -20,9 +20,33 @@ const faq = [
   { q: `How much does it cost to fix ${e.shown}?`, a: `${e.partCost} ${e.serviceCost}` },
   { q: `Is it worth repairing?`, a: e.worth },
 ];
+// Additional question pairs derived from the same repair data — phrasing varies by entry
+// so pages in a model family do not read identically. All answers are site-authored
+// summaries of the documented fix, never attributed to fake users.
+const phaseQ = [`${e.shown} during startup or during use?`, `When does ${e.shown} typically show up?`];
+const keepMap: Record<string, string> = {
+  high: `Treat it as a stop-using signal: ${e.shown} marks a fault that can damage the machine (or worse) if you keep running it. Do the safe first steps below, then stop.`,
+  medium: `Usually you can finish the drink you are making, but do not ignore it — the underlying fault rarely heals itself. Work through the cheap checks first.`,
+  low: `Generally yes — ${e.shown} is more of an annoyance than an emergency. Fix it when convenient; just do not let the cause sit for months.`,
+};
+const clearMap: Record<string, string> = {
+  easy: `Often, yes. The first step (${e.steps[0].toLowerCase().replace(/\.$/, '')}) clears a share of cases on its own. If the code comes straight back, the part is genuinely at fault.`,
+  moderate: `Sometimes. Try the reset and cleaning steps first — they cost nothing and clear the milder cases. A code that returns within a day or two needs the parts fix.`,
+  hard: `Rarely. A reset or power cycle is worth one try, but ${e.shown} with a "hard" difficulty rating almost always means a failed component that has to be replaced.`,
+};
+const timeMap: Record<string, string> = {
+  easy: `Fifteen to thirty minutes with basic tools, once you have the part.`,
+  moderate: `Thirty minutes to an hour if you are comfortable opening the case; budget an afternoon the first time.`,
+  hard: `This one is a bench repair for most owners — the teardown, test and reassembly are the bulk of the work, not the part itself.`,
+};
+const idx = entries.indexOf(e);
+faq.push({ q: phaseQ[idx % 2], a: `${modelLabel}s report ${e.shown} ${e.phase}. ${e.phase === 'any time' ? 'There is no reliable pattern to when it appears — treat any occurrence as real.' : 'That timing is a useful clue when narrowing the cause.'}` });
+faq.push({ q: `Can I keep using the machine with ${e.shown} showing?`, a: keepMap[e.severity] });
+faq.push({ q: `Will ${e.shown} clear on its own?`, a: clearMap[e.diy] });
+faq.push({ q: `How long does the repair take?`, a: timeMap[e.diy] });
 const ld = [
   { '@context': 'https://schema.org', '@type': 'HowTo', name: `Fix ${e.shown} on the ${modelLabel}`, description: e.quick, step: e.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, text: s })) },
-  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.slice(0, 6).map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];
 ---
 <Base title={title} description={desc} jsonLd={ld} crumbs={crumbs}>
