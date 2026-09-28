@@ -18,11 +18,13 @@ export interface Entry {
 
 export const brands: Brand[] = [
   { slug: 'breville', name: 'Breville / Sage', blurb: 'Barista Touch, Barista Touch Impress, Oracle, Oracle Touch, Oracle Jet and Dual Boiler. ER-codes from the service tables Breville does not publish.' },
-  { slug: 'jura', name: 'Jura', blurb: 'Numbered Error 1 to 8 on E, ENA, S, J, Z and GIGA machines, plus the messages that will not clear.' },
+  { slug: 'jura', name: 'Jura', blurb: 'Numbered errors on E, ENA, S, J, Z and GIGA machines — the thermoblock, valve, brew-group and grinder codes — plus the messages that will not clear.' },
   { slug: 'philips-saeco', name: 'Philips / Saeco', blurb: 'Error 01 to 22 on LatteGo 2200/3200/4300/5400, Xelsis, Incanto and older Saeco machines.' },
   { slug: 'delonghi', name: "De'Longhi", blurb: 'General Alarm, Insert Infuser, Water Circuit Empty and the other Magnifica, Dinamica and PrimaDonna messages, with the hidden numeric codes.' },
   { slug: 'ge', name: 'GE Appliances', blurb: 'GE dishwasher C-codes, H2O and 888, and GE dryer E-codes. GE has no official code page, so this fills the gap.' },
-  { slug: 'samsung', name: 'Samsung', blurb: 'Range and wall-oven codes: SE, E-08, E-0A, E-27, tE and the rest.' },
+  { slug: 'samsung', name: 'Samsung', blurb: 'Range and wall-oven codes: SE, E-08, E-0A, E-27, tE, the C-family temperature and fan codes, and the rest.' },
+  { slug: 'nespresso', name: 'Nespresso', blurb: 'Vertuo machine errors: the 1300-family descale and pod-sensor codes, the 70x series, and what every blinking-light pattern means.' },
+  { slug: 'miele', name: 'Miele', blurb: 'CM and CVA coffee system faults: the F-number water, brew-unit and valve codes from the Miele manuals.' },
 ];
 
 const SVC_COFFEE = 'Out-of-warranty manufacturer service for a super-automatic is typically $250 to $500 including return shipping; independent espresso repairers are usually cheaper for a single part.';
@@ -63,6 +65,16 @@ export const models: ModelInfo[] = [
     brandSlug: 'samsung', slug: 'range-wall-oven', name: 'range and wall oven', sku: 'NE / NX / NV / NZ', codeFormat: 'E-08',
     blurb: 'Samsung ranges show a two-part code (E-08, E-0A, E-27) for the oven and short codes (SE, tE, LE) for the control panel. Most are a sensor, the door lock, or a stuck key.',
     logAccess: 'Samsung ovens do not have a user-accessible error log. The code stays on the display until you fix the cause or cut power at the breaker for 3 minutes; if it returns after a reset, treat it as real.',
+  },
+  {
+    brandSlug: 'nespresso', slug: 'vertuo-machines', name: 'Vertuo machines (Next, Plus, Pop, Evoluo)', shortName: 'Vertuo', sku: 'Vertuo line', codeFormat: '1301',
+    blurb: 'Vertuo machines report most faults as blinking-light patterns; the numeric 1300-family codes appear on connected models. Both are covered here.',
+    notes: 'Nespresso documents light patterns on its assistance pages; the numeric codes come from machine displays and owner reports, so treat them as strong community signals rather than an official list.',
+  },
+  {
+    brandSlug: 'miele', slug: 'cm-cva-machines', name: 'coffee systems (CM 5510/6150, CVA 6401/6805)', shortName: 'CM / CVA', sku: 'CM / CVA', codeFormat: 'F10',
+    blurb: 'Miele coffee systems show F-codes from the built-in self diagnosis. The water-supply codes are user-fixable; the valve and brew-unit codes usually need Miele service.',
+    notes: 'Meanings below follow the Miele operating-instruction manuals; wording varies slightly between CM countertop and CVA built-in models.',
   },
 ];
 
@@ -173,6 +185,18 @@ const juraEntries = make('jura', 'automatic-machines', SVC_COFFEE, [
     steps: ['Remove the tray, wash it, and wipe the two metal strips dry with a damp cloth, then dry.', 'Wipe the mating contacts in the machine.', 'Refit the tray firmly until it clicks.', 'If it still reads full, the strips are corroded through; a new tray is the fix.'],
     stop: 'Nothing dangerous here.', partCost: 'Drip tray $30 to $60.', worth: 'Yes.',
   },
+  {
+    code: 'Error 12', shown: 'Error 12', meaning: 'Grinder failed to activate — the motor is seized or the burrs are impeded, most often by a stone picked up with the beans (GIGA: left grinder)', component: 'grinder motor and burrs', severity: 'medium', diy: 'moderate', faultTitle: 'grinder jam or motor fault',
+    quick: 'The control board commanded a grind and the grinder never turned. On two-grinder GIGA machines Error 12 names the left grinder. In practice it is nearly always a foreign object — classically a small stone from a bean harvest — jamming the burrs, or a motor that has seized on old, oily fines. On the GIGA 6 the same number can instead flag a communication or sensor fault, which a power cycle addresses first.',
+    steps: [
+      'Unplug for five minutes, then restart — on GIGA 6 this clears the communication-fault variant.',
+      'Empty the bean hopper completely and inspect the beans at the bottom for stones or clumped roasts.',
+      'Vacuum the hopper outlet and the grinder throat with a narrow nozzle; do not poke metal into the burrs.',
+      'Empty the grounds container and drip tray, reinsert both, and restart so the machine re-homes.',
+      'If the grinder hums without turning once clear, the motor is seized and needs replacement.',
+    ],
+    stop: 'Burr and grinder-motor replacement on a GIGA means significant teardown — a bench repair unless you already service these.', partCost: 'Grinder motor $60 to $140; burr set $25 to $45.', worth: 'Yes on GIGA and Z machines — check your beans for stones before refilling.',
+  },
 ]);
 
 // ---------- Philips / Saeco ----------
@@ -218,6 +242,17 @@ const phEntries = make('philips-saeco', 'espresso-machines', SVC_COFFEE, [
     quick: 'Philips does not publish what these mean and the manual says contact support. In practice they are the machine failing its self-test on an internal component: a stuck or dead brew-group drive, a pump that is not building pressure, a valve not switching, or a board fault. There is one thing worth trying before you book service.',
     steps: ['Unplug for ten minutes, remove and reseat the brew group, refill the tank and restart. A one-off glitch clears.', 'Note whether the code appears at startup (self-test, usually the brew group drive or a valve) or when brewing (usually pump or pressure).', 'If under warranty, contact Philips; they replace rather than repair most of these.', 'Out of warranty, an independent repairer can test the pump, valve and drive individually.'],
     stop: 'Do not open the machine while under warranty; the seal voids it.', partCost: 'Pump $30 to $50; brew-group motor $30 to $60; board $80 to $150.', worth: 'On a LatteGo 3200/5400 or Xelsis, yes; on a ten-year-old Saeco, price a replacement.',
+  },
+  {
+    code: '20', shown: 'Error 20', meaning: 'Brew group not detected in position, or a service component (drip tray, grounds container, service door) not seated — the Xelsis-class fault family Philips routes to the brew unit and door switches', component: 'brew group position / service door switches', severity: 'medium', diy: 'easy', faultTitle: 'brew unit or service door fault',
+    quick: 'Philips does not publish a per-code table for the service codes; the Xelsis manuals route numeric errors in this range to the brew group and the service-door interlocks. The manual reset for this family is explicit: refit the drip tray and grounds container, close the service door, switch the machine off and back on. Where the code returns, the brew unit itself is jammed or its position sensor is not reading.',
+    steps: [
+      'Switch off and unplug. Refit the drip tray and the coffee grounds container firmly, close the service door fully, then switch on again — this is the manual-documented reset for the family.',
+      'On models with a removable brew group: take it out, rinse under warm water, let it dry, lubricate the rails with food-safe silicone grease, and reinsert until it clicks.',
+      'Run a rinse cycle. If the code clears, run the cleaning cycle next; a sticky brew unit is the usual underlying cause.',
+      'If Error 20 persists with the group clean and everything seated, the brew-group motor or its position sensor needs a technician — Philips support routes these to saeco.com/care.',
+    ],
+    stop: 'Xelsis brew groups on non-removable models are internal; do not force the service door.', partCost: 'Silicone grease $10; brew group $80 to $140 if replacement is needed.', worth: 'Yes — the reseat-and-rinse reset clears most cases.',
   },
 ]);
 
@@ -437,9 +472,98 @@ const smEntries = make('samsung', 'range-wall-oven', SVC_HOME, [
     quick: 'On induction ranges, the inverter board that drives the coils has detected a sensor problem.',
     steps: ['Cut power for 3 minutes.', 'Reseat the inverter wiring (power off).', 'Replace the inverter board; this is a technician repair.'],
     stop: 'Induction inverters hold high voltage after power off.', partCost: 'Inverter board $150 to $350.', worth: 'Get a quote.' },
+  {
+    code: 'C-21', shown: 'C-21', meaning: 'Oven internal temperature too high — the safety monitor tripped, most often the temperature sensor or its circuit', component: 'oven temperature sensor (thermistor)', severity: 'high', diy: 'moderate', faultTitle: 'oven overheat shutdown',
+    quick: 'The control board saw an oven temperature above the safe window and shut heating down. Owners have reported ranges becoming dangerously hot before the code appears, so treat C-21 as a stop-cooking signal, not a nuisance. The usual cause is the temperature sensor reading wrong (or its harness); the main PCB is the second suspect.',
+    steps: [
+      'Cut power at the breaker for 5 to 10 minutes and retest once. If C-21 returns on the next heat-up, the fault is real.',
+      'Unplug the range. The sensor is the probe on the back wall of the cavity; remove its two screws and pull the harness forward to disconnect.',
+      'Measure the sensor with a multimeter: around 1,080 ohms at room temperature is healthy. Open circuit or a wild reading means replace the sensor.',
+      'Inspect the harness connector for heat damage where it passes near the element — a melted connector gives the same code.',
+      'Sensor good and it still trips: the main control board is misregulating the elements, which is a service-level repair.',
+    ],
+    stop: 'If the oven was overheating before the code appeared, stop using it until the sensor is verified. Capacitors on the PCB hold mains voltage.', partCost: 'Temperature sensor $15 to $40; harness $10 to $20; main PCB $150 to $300.', worth: 'Yes — the sensor is a ten-minute screwdriver part and the most common fix.',
+  },
+  {
+    code: 'C-24', shown: 'C-24', meaning: 'Rapid temperature rise detected around the ventilation and control area — a cooling-airflow or over-temp sensing fault', component: 'cooling airflow / over-temp thermistor', severity: 'high', diy: 'moderate', faultTitle: 'vent-area overtemp fault',
+    quick: 'Samsung documents the C-24/C-25 family as a heating over-temp condition tied to the ventilation area: the electronics compartment is warming faster than the board expects. In practice it splits into three causes — a cooling fan that never spins up, blocked airflow around the range, or a failing over-temp thermistor reading a healthy area as hot.',
+    steps: [
+      'Reset at the breaker for 5 minutes, then run a bake cycle and listen: the convection/cooling fan should spin as the oven heats.',
+      'Check installation clearance and that no vents under or behind the range are blocked by cabinetry, foil or dust.',
+      'Power off and test the over-temp thermistor on its connector (room-temperature reading in the same ~1,000 ohm class as the cavity sensor); replace if it is open or drifting.',
+      'If the fan is dead, replace it before the control board cooks itself — heat is the cause, the board is the casualty.',
+      'Recurring C-24 with a good fan and sensor points to the main PCB.',
+    ],
+    stop: 'Mains voltage on the PCB; fan replacement behind the control panel needs the range unplugged.', partCost: 'Cooling fan $40 to $90; thermistor $15 to $35; main PCB $150 to $300.', worth: 'Yes if it is the fan or sensor; get a quote if the board is implicated.',
+  },
+  {
+    code: 'C-F2', shown: 'C-F2', meaning: 'Cooling-fan / control communication fault — the display board is not receiving the expected feedback from the cooling fan circuit', component: 'cooling fan and its feedback circuit', severity: 'medium', diy: 'moderate', faultTitle: 'cooling fan feedback fault',
+    quick: 'The C-F family on Samsung ranges is the control system reporting that a monitored component is not answering — with C-F2 it is the cooling fan circuit. Either the fan is genuinely not running, its connector is loose or scorched, or the feedback line to the board has failed. Unlike C-21/C-24 this is usually an electrical fault rather than a genuine overheat.',
+    steps: [
+      'Breaker reset for 5 minutes, then heat the oven and confirm whether the cooling fan physically spins.',
+      'Fan spinning but code persists: the feedback path is the fault — reseat the fan connector on the board and look for heat-discoloured pins.',
+      'Fan not spinning: check for a jammed blade (dust, a dropped screw behind the panel), then measure the fan for an open winding.',
+      'Replace the fan if it is dead; the code clears with a working feedback signal.',
+      'A fan and connector that both check out with C-F2 persisting points to the main board input.',
+    ],
+    stop: 'Unplug the range before working behind the control panel.', partCost: 'Cooling fan $40 to $90; connector repair $10; main PCB $150 to $300.', worth: 'Yes — fan and connector fixes are cheap.',
+  },
 ]);
 
-export const entries: Entry[] = [...brevilleEntries, ...juraEntries, ...phEntries, ...dlEntries, ...geDwEntries, ...geDryEntries, ...smEntries];
+const nespressoEntries = make('nespresso', 'vertuo-machines', SVC_COFFEE, [
+  {
+    code: '1301-1305', shown: '1301-1305', meaning: 'Descale-system and pod-sensor fault family on connected Vertuo machines — the machine is stuck in descale mode or the capsule sensor is misreading', component: 'descale circuit / capsule sensor', severity: 'medium', diy: 'easy', faultTitle: 'descale or pod-sensor fault',
+    quick: 'Nespresso does not publish the 1300-family table; owner reports consistently tie 1301 to a machine stuck in (or needing) descale mode and to the pod sensor not reading a capsule, with the neighbouring codes in the same family. Both causes are addressed by the same official sequence: the factory reset, then a full descale cycle, then cleaning the capsule window.',
+    steps: [
+      'Factory reset (official Vertuo procedure): with the handle in the UNLOCKED position, press the button 5 times within 3 seconds — it blinks orange five times to confirm.',
+      'Run a complete descaling cycle with Nespresso descaler and let it finish uninterrupted; a cancelled descale is the classic way these machines get stuck in the mode.',
+      'Remove the capsule holder and wipe the capsule window and machine head so the sensor can read the pod barcode.',
+      'Empty and refill the water tank, then retest with a fresh capsule.',
+      'Persisting after reset, descale and cleaning: contact Nespresso support — Vertuo machines are usually replaced under warranty rather than repaired.',
+    ],
+    stop: 'Nothing dangerous here — just do not force the head closed on a capsule.', partCost: 'Usually $0 — descaler $15; Nespresso exchanges faulty machines.', worth: 'Yes — the reset-descale-clean sequence resolves most reports.',
+  },
+  {
+    code: 'Blinking lights', shown: 'Blinking lights', meaning: 'The Vertuo light patterns are the machine error language: blink colour and count identify heating, descale and fault states', component: 'varies by pattern', severity: 'low', diy: 'easy', faultTitle: 'light-pattern decoder',
+    quick: 'Vertuo machines speak in blinks, and Nespresso documents the patterns on its assistance pages. The recurring ones: alternating/sequential blinks during start-up are normal heating; blinking orange is descale-family (needed, in progress, or overdue); a steady or repeating red is a fault state — typically overheating or an internal error — where the first move is unplugging long enough for the machine to cool and reset.',
+    steps: [
+      'Count what the light does before touching anything: colour, steady vs blinking, and how many blinks per group.',
+      'Sequential or alternating blinks right after power-on: heating mode — wait 15 to 25 seconds for ready; not a fault.',
+      'Orange in any pattern: run the full descale cycle. Blinking orange that never ends usually means a descale that was started and never finished.',
+      'Steady or repeating red: unplug for at least 10 minutes (let it fully cool if it was hot), then retry. Red that returns immediately needs support.',
+      'Do the 5-press factory reset last, not first — it wipes descale reminders and pairing without fixing mechanical causes.',
+    ],
+    stop: 'Nothing dangerous; do not descale with vinegar — it damages the circuit and voids help.', partCost: '$0 to $15 (descaler).', worth: 'Yes — decoding the pattern is the whole fix most of the time.',
+  },
+]);
+
+const mieleEntries = make('miele', 'cm-cva-machines', SVC_COFFEE, [
+  {
+    code: 'F10 / F17', shown: 'F10 / F17', meaning: 'No water, or very little water, is being drawn in — the Miele manual wording for a water-supply fault', component: 'water container and intake circuit', severity: 'medium', diy: 'easy', faultTitle: 'water not drawn in',
+    quick: 'F10 and F17 share one manual entry: the machine tried to fill and failed or trickled. On countertop CM machines the cause is almost always the removable container — empty, mis-seated, or its valve sticking — and on plumbed CVA builds it moves upstream to the supply valve and filter. This is the friendliest fault in the Miele table: the manual fix is genuinely the whole fix.',
+    steps: [
+      'Remove the water container, fill it with fresh tap water (cold, not distilled) and reinsert it until it locks — the manual fix, verbatim.',
+      'Check the container valve seat for a stuck or dirty seal and rinse it under running water.',
+      'Plumbed-in machines: confirm the shut-off valve is open and the inline filter is not clogged.',
+      'Descaling the water intake is the next step if the fault recurs — scale in the valve makes it intermittent.',
+      'A machine that still reports F10/F17 with a verified supply needs the intake valve or pump looked at by Miele service.',
+    ],
+    stop: 'Nothing dangerous — just do not run the machine dry repeatedly.', partCost: 'Usually $0; intake valve $30 to $60 if it has failed.', worth: 'Yes — start with the container; it is the answer nearly every time.',
+  },
+  {
+    code: 'F77', shown: 'F77', meaning: 'Internal fault, most often at valve initialization — the Miele manuals route it to a power cycle, then service', component: 'valve / control electronics', severity: 'high', diy: 'not recommended', faultTitle: 'valve initialization fault',
+    quick: 'F77 is the Miele catch-all for an internal malfunction detected at start-up, in practice centred on the valve system failing to initialise. The manual remedy is honest about the limit of self-help: switch off, unplug, wait — some manuals suggest up to an hour — and restart. F77 that returns is a component failure (valve, pump or the control board) and belongs with Miele service.',
+    steps: [
+      'Switch off with the On/Off sensor, then unplug the machine from the wall.',
+      'Leave it off for several minutes; if F77 returned after a brief off period before, give it an hour.',
+      'Plug back in and power on, watching whether the fault appears immediately at initialisation or only when a drink is requested.',
+      'Immediate recurrence: note the model number (CM 5510/6150, CVA 6401/6805 differ internally) and call Miele — this code is inside their service boundary.',
+    ],
+    stop: 'Miele explicitly says the outer casing must not be opened — internal voltages and a pressurised system make F77 a service-only fault.', partCost: 'Diagnosis by Miele service; valve $50 to $120, control board more.', worth: 'Yes on CM/CVA machines — these systems cost enough to repair, and the power-cycle attempt is free.',
+  },
+]);
+
+export const entries: Entry[] = [...brevilleEntries, ...juraEntries, ...phEntries, ...dlEntries, ...geDwEntries, ...geDryEntries, ...smEntries, ...nespressoEntries, ...mieleEntries];
 
 export const brandBySlug = (s: string) => brands.find((b) => b.slug === s)!;
 export const modelsOf = (brandSlug: string) => models.filter((m) => m.brandSlug === brandSlug);
@@ -461,4 +585,8 @@ export const featured: { brandSlug: string; modelSlug: string; slug: string }[] 
   { brandSlug: 'ge', modelSlug: 'dishwasher', slug: '888' },
   { brandSlug: 'ge', modelSlug: 'dryer', slug: 'e8' },
   { brandSlug: 'samsung', modelSlug: 'range-wall-oven', slug: 'se' },
+  { brandSlug: 'samsung', modelSlug: 'range-wall-oven', slug: 'c-21' },
+  { brandSlug: 'jura', modelSlug: 'automatic-machines', slug: 'error-12' },
+  { brandSlug: 'miele', modelSlug: 'cm-cva-machines', slug: 'f77' },
+  { brandSlug: 'nespresso', modelSlug: 'vertuo-machines', slug: '1301-1305' },
 ];

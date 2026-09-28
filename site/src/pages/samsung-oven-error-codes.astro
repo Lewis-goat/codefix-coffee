@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import { entriesOf, href } from '../data/catalog';
+
+const all = entriesOf('samsung', 'range-wall-oven');
+const cCodes = all.filter((e) => /^C/i.test(e.shown));
+const eCodes = all.filter((e) => /^E/i.test(e.shown));
+const short = all.filter((e) => !/^C/i.test(e.shown) && !/^E/i.test(e.shown));
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Samsung', href: '/samsung' }, { name: 'Oven error codes', href: '/samsung-oven-error-codes' }];
+---
+<Base
+  title="Samsung Oven Error Codes: Every Code, What It Means (2026)"
+  description="Every Samsung oven and range error code in one table: the C-family temperature and fan codes (C-21, C-24, C-F2), the E-codes, SE, tE and LE — meaning, fix and cost for each."
+  crumbs={crumbs}
+  jsonLd={[{
+    '@context': 'https://schema.org', '@type': 'ItemList',
+    name: 'Samsung oven error codes',
+    itemListElement: all.map((e, i) => ({ '@type': 'ListItem', position: i + 1, name: `${e.shown} — ${e.meaning}`, url: `https://codefixcoffee.com${href(e)}` })),
+  }]}
+>
+  <h1>Samsung oven error codes: the full list</h1>
+  <p class="lead">Samsung ranges and wall ovens split their codes into three families: <strong>C-codes</strong> (temperature and cooling-fan monitoring on newer smart ranges), <strong>E-codes</strong> (oven function faults) and <strong>short codes</strong> (control panel: SE, tE, LE). Every code links to a fix-first page with the part, the cost and whether it is worth repairing.</p>
+
+  <h2>C-codes: temperature and fan monitoring</h2>
+  <p>These appear on newer NE/NX series smart ranges. The three people actually meet: <a href="/samsung/range-wall-oven/c-21/">C-21</a> (oven overheat shutdown — sensor), <a href="/samsung/range-wall-oven/c-24/">C-24</a> (rapid temperature rise near the ventilation area — airflow or thermistor), and <a href="/samsung/range-wall-oven/c-f2/">C-F2</a> (cooling-fan feedback fault).</p>
+  <div class="tablewrap"><table>
+    <tr><th>Code</th><th>Meaning</th><th>DIY</th></tr>
+    {cCodes.map((e) => (
+      <tr><td><a href={href(e)}><code>{e.shown}</code></a></td><td>{e.meaning}</td><td>{e.diy}</td></tr>
+    ))}
+  </table></div>
+
+  <h2>E-codes: oven function faults</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Code</th><th>Meaning</th><th>DIY</th></tr>
+    {eCodes.map((e) => (
+      <tr><td><a href={href(e)}><code>{e.shown}</code></a></td><td>{e.meaning}</td><td>{e.diy}</td></tr>
+    ))}
+  </table></div>
+
+  <h2>Control-panel short codes</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Code</th><th>Meaning</th><th>DIY</th></tr>
+    {short.map((e) => (
+      <tr><td><a href={href(e)}><code>{e.shown}</code></a></td><td>{e.meaning}</td><td>{e.diy}</td></tr>
+    ))}
+  </table></div>
+
+  <h2>First steps for any Samsung oven code</h2>
+  <ol class="steps">
+    <li>Cut power at the breaker for 5 minutes — Samsung boards hold the code until hard reset; a code that returns after reset is real.</li>
+    <li>Write down the exact code before it clears — the letter part identifies the family and narrows the part instantly.</li>
+    <li>Temperature-family codes (C-21, C-24, E-2x) start with the cavity sensor: ~1,080 ohms at room temperature on a meter is healthy.</li>
+    <li>Overheat codes mean stop cooking until verified — a genuinely overheating oven is a fire risk, not an inconvenience.</li>
+  </ol>
+  <p class="note">Samsung publishes an official code list per model line at samsung.com support; this page compiles the codes owners actually encounter with the fixes repairers actually apply. Model suffixes (NE58*/NX60*) can add codes — search your display code plus the model number for anything not listed.</p>
+</Base>
