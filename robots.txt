@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Crawlers that add load but send no search traffic
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://codefixcoffee.com/sitemap-index.xml
