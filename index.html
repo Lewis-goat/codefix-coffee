@@ -95,7 +95,7 @@
       var terms = norm(q.value).split(' ').filter(Boolean);
       out.innerHTML = '';
       if (!terms.length) return;
-      var hits = rows.filter(function (r) { var h = norm(r.t + ' ' + r.m); return terms.every(function (t) { return h.indexOf(t) > -1; }); }).slice(0, 12);
+      var hits = rows.filter(function (r) { var h = norm(r.t + ' ' + r.m); h = ' ' + h; return terms.every(function (t) { return h.indexOf(' ' + t) > -1; }); }).slice(0, 12);
       if (!hits.length) { out.innerHTML = '<li class="note">No match yet. Try just the code, or the brand name.</li>'; return; }
       hits.forEach(function (r) {
         var li = document.createElement('li'), a = document.createElement('a'), s = document.createElement('small');
