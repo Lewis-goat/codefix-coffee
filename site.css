@@ -178,6 +178,22 @@ footer.site .legal { border-top:1px solid #2a343a; padding-top:18px; font-size:1
 footer:not(.site) { border-top:1px solid var(--line); margin-top:32px; padding:20px; text-align:center; font-size:14px; color:var(--muted); }
 footer:not(.site) a { color:var(--muted); margin:0 8px; }
 
+/* @enrich-start */
+/* ---------- "Beyond the fix" enrichment block (only inlined on pages that render it) ---------- */
+.beyond { margin-top:8px; }
+.beyond h3 { font:600 13px var(--sans); text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:24px 0 8px; }
+.box.dyk { background:var(--wash); border:0; border-left:4px solid var(--accent); border-radius:0 var(--r) var(--r) 0; padding:16px 22px; color:var(--ink); }
+.box.dyk strong:first-child { font:600 12px var(--mono); text-transform:uppercase; letter-spacing:.1em; color:var(--accent-dark); display:block; margin-bottom:4px; }
+ul.tips { margin:0 0 6px; padding:0 0 0 1.25em; }
+ul.tips li { padding:3px 0; }
+small.via { display:inline-block; margin-left:8px; font:500 12.5px var(--mono); color:var(--muted); white-space:nowrap; }
+small.via a { color:var(--muted); }
+small.via a:hover { color:var(--accent); }
+ul.sources { list-style:none; margin:0; padding:0; font-size:16px; }
+ul.sources li { padding:7px 0; border-bottom:1px solid var(--line); }
+ul.sources li:first-child { border-top:1px solid var(--line); }
+/* @enrich-end */
+
 @media (max-width:640px) {
   body { font-size:17px; }
   .codehead { flex-direction:column; gap:14px; }
