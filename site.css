@@ -178,6 +178,7 @@ footer.site .legal { border-top:1px solid #2a343a; padding-top:18px; font-size:1
 footer:not(.site) { border-top:1px solid var(--line); margin-top:32px; padding:20px; text-align:center; font-size:14px; color:var(--muted); }
 footer:not(.site) a { color:var(--muted); margin:0 8px; }
 
+.prov strong:first-child { display:block; margin-bottom:6px; }
 /* @enrich-start */
 /* ---------- "Beyond the fix" enrichment block (only inlined on pages that render it) ---------- */
 .beyond { margin-top:8px; }
