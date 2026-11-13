@@ -48,6 +48,7 @@ p { margin:0 0 14px; }
 .note { font-size:14.5px; color:var(--muted); }
 code { font-family:var(--mono); font-weight:500; font-size:.88em; background:var(--wash); padding:1px 6px; border-radius:2px; color:var(--ink); }
 .ad { min-height:90px; margin:28px 0; }
+.adbox { min-height:250px; text-align:center; }
 
 /* ---------- hero (home) ---------- */
 .hero { background:var(--wash); border-bottom:1px solid var(--line); margin:-26px calc(50% - 50vw) 36px; padding:44px calc(50vw - 50%) 40px; }
