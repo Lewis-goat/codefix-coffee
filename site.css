@@ -49,6 +49,11 @@ p { margin:0 0 14px; }
 code { font-family:var(--mono); font-weight:500; font-size:.88em; background:var(--wash); padding:1px 6px; border-radius:2px; color:var(--ink); }
 .ad { min-height:90px; margin:28px 0; }
 .adbox { min-height:250px; text-align:center; }
+.adside { position:fixed; top:110px; width:160px; min-height:600px; margin:0; z-index:5; }
+.adleft { left:calc(50% - 540px - 180px); }
+.adright { left:calc(50% + 540px + 20px); }
+.adrail { margin-top:24px; min-height:600px; }
+@media print { .adunit, #adconsent { display:none; } }
 #adconsent { position:fixed; left:12px; right:12px; bottom:12px; z-index:50; max-width:560px; margin:0 auto; padding:12px 14px; background:#fff; color:#222; border:1px solid #bbb; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,.2); font-size:14px; }
 #adconsent p { margin:0 0 8px; }
 #adconsent button { font:inherit; padding:6px 14px; border:1px solid #666; border-radius:6px; background:#f3f3f3; color:#222; cursor:pointer; }
