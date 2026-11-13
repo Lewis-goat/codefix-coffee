@@ -3,7 +3,7 @@
 
     // Ads. Every unit is an iframe to a page on our own registered ad host (ads.codefixcoffee.com), which holds the ad network's code.
     // Layout: 160x600 banners in the side gutters (1440px and up) or the code-page rail (1000 to 1439px), a 300x250 after the article
-    // on narrower screens, and a 728x90 (wide screens) or 320x50 (phones) banner in the footer. Nothing goes inside the article text.
+    // on narrower screens. One Amazon banner plus one Adsterra banner per page; no footer banner. Nothing goes inside the article text.
     // Visitors whose browser timezone is in Europe (EEA, UK, Switzerland) see a consent prompt first and get ads only if they allow.
     (function () {
       function eu() { if (/[?&]adpreview=1(&|$)/.test(location.search)) return false; try { var z = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; return /^(Europe|Atlantic\/(Reykjavik|Azores|Madeira|Canary|Faroe)|Arctic\/Longyearbyen)/.test(z); } catch (e) { return true; } }
@@ -33,19 +33,17 @@
         if (!document.querySelector('.adunit[data-kind="foot"]')) return;
         var main = document.querySelector('main'); if (!main) return;
         var w = window.innerWidth, rail = document.querySelector('aside.rail .sticky');
+        // One Amazon and one Adsterra banner per page, so the two can be compared.
         if (w >= 1440) {
           document.body.appendChild(amz('adside adleft', 160, 600));
           document.body.appendChild(unit('adside adright', 'side', 160, 600));
         } else if (w >= 1000 && rail) {
+          rail.appendChild(amz('adrail', 160, 600));
           rail.appendChild(unit('adrail', 'side', 160, 600));
         } else {
           main.appendChild(amz('adbox', 300, 250));
           main.appendChild(unit('adbox', 'box', 300, 250));
         }
-        // footer banner: placeholder rendered by AdUnit.astro
-        document.querySelectorAll('.adunit[data-kind="foot"]').forEach(function (el) {
-          el.appendChild(w >= 768 ? unit('adfoot', 'wide', 728, 90).firstChild : unit('adfoot', 'mobile', 320, 50).firstChild);
-        });
       }
       function banner() {
         if (document.getElementById('adconsent')) return;
@@ -255,6 +253,7 @@ h2 { font-size:23px; margin-top:36px; }
 .amzban.adbox { margin:20px auto; }
 .amzban.adside, .amzban.adrail { min-height:0 !important; }
 @media print { .amzban { display:none; } }
+.adunit[data-kind="foot"] { display:none; }
 
 .beyond { margin-top:8px; }
 .beyond h3 { font:600 13px var(--sans); text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:24px 0 8px; }
