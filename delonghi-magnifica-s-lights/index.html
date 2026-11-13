@@ -14,6 +14,18 @@
         f.style.border = '0'; f.style.display = 'block'; f.style.margin = '0 auto'; f.style.maxWidth = '100%'; f.title = 'Advertisement';
         d.appendChild(f); return d;
       }
+      // Amazon Associates banner: our own CSS, no Amazon imagery or prices. Links to an Amazon search with our tracking ID; nothing loads from Amazon until a click.
+      function amz(cls, w, h) {
+        var P = location.pathname.toLowerCase(), brand = '', q = 'coffee machine descaler';
+        var B = [['jura', 'Jura'], ['delonghi', "De'Longhi"], ['magnifica', "De'Longhi"], ['philips', 'Philips'], ['saeco', 'Philips'], ['lattego', 'Philips'], ['nespresso', 'Nespresso'], ['breville', 'Breville'], ['sunbeam', 'Sunbeam']];
+        for (var i = 0; i < B.length; i++) { if (P.indexOf(B[i][0]) > -1) { brand = B[i][1]; break; } }
+        if (brand) q = brand + ' descaling solution';
+        var a = document.createElement('a'); a.className = 'ad adunit amzban ' + cls; a.style.width = w + 'px'; a.style.minHeight = h + 'px';
+        a.href = 'https://www.amazon.com/s?k=' + encodeURIComponent(q) + '&tag=codefixcoffee-20'; a.target = '_blank'; a.rel = 'sponsored nofollow noopener';
+        a.setAttribute('aria-label', 'Advertisement');
+        a.innerHTML = '<span class="amzk">Supplies</span><strong>' + (brand ? 'Descaling and cleaning supplies for ' + brand + ' machines' : 'Descaling and cleaning supplies for coffee machines') + '</strong><em>Search on Amazon</em><small>As an Amazon Associate I earn from qualifying purchases.</small>';
+        return a;
+      }
       function stored() { try { return localStorage.getItem('adconsent'); } catch (e) { return null; } }
       function store(v) { try { localStorage.setItem('adconsent', v); } catch (e) {} }
       function fill() {
@@ -22,11 +34,12 @@
         var main = document.querySelector('main'); if (!main) return;
         var w = window.innerWidth, rail = document.querySelector('aside.rail .sticky');
         if (w >= 1440) {
-          document.body.appendChild(unit('adside adleft', 'side', 160, 600));
+          document.body.appendChild(amz('adside adleft', 160, 600));
           document.body.appendChild(unit('adside adright', 'side', 160, 600));
         } else if (w >= 1000 && rail) {
           rail.appendChild(unit('adrail', 'side', 160, 600));
         } else {
+          main.appendChild(amz('adbox', 300, 250));
           main.appendChild(unit('adbox', 'box', 300, 250));
         }
         // footer banner: placeholder rendered by AdUnit.astro
@@ -234,6 +247,13 @@ body { font-size:17px; }
 .facts div:last-child { border-bottom:0; }
 h2 { font-size:23px; margin-top:36px; }
 }
+.amzban { display:flex; flex-direction:column; justify-content:center; gap:10px; box-sizing:border-box; padding:16px 14px; border:1px solid var(--line); background:var(--wash); color:inherit; text-decoration:none; text-align:left; }
+.amzban .amzk { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; opacity:.7; }
+.amzban strong { font-size:1rem; line-height:1.3; }
+.amzban em { font-style:normal; font-weight:600; text-decoration:underline; }
+.amzban small { font-size:.68rem; opacity:.7; line-height:1.35; }
+.amzban.adbox { margin:20px auto; }
+@media print { .amzban { display:none; } }
 
 .beyond { margin-top:8px; }
 .beyond h3 { font:600 13px var(--sans); text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:24px 0 8px; }
