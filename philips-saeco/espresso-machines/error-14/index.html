@@ -7,7 +7,7 @@ const adBox = "eafc4cc3440599d5348ca18d0d36b935";
     // between 1 and 6 per page: the native banner in the footer plus 300x250 banners placed between top-level blocks of the article.
     // The 300x250 banner runs in its own iframe because its snippet uses document.write.
     (function () {
-      function eu() { try { var z = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; return /^(Europe|Atlantic\/(Reykjavik|Azores|Madeira|Canary|Faroe)|Arctic\/Longyearbyen)/.test(z); } catch (e) { return true; } }
+      function eu() { if (/[?&]adpreview=1(&|$)/.test(location.search)) return false; try { var z = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; return /^(Europe|Atlantic\/(Reykjavik|Azores|Madeira|Canary|Faroe)|Arctic\/Longyearbyen)/.test(z); } catch (e) { return true; } }
       function box() {
         var d = document.createElement('div'); d.className = 'ad adunit adbox'; d.setAttribute('aria-label', 'Advertisement');
         var f = document.createElement('iframe');
