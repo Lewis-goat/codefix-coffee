@@ -13,32 +13,17 @@
         f.style.border = '0'; f.style.display = 'block'; f.style.margin = '0 auto'; f.style.maxWidth = '100%'; f.title = 'Advertisement';
         d.appendChild(f); return d;
       }
-      // Amazon Associates banner: our own CSS, no Amazon imagery or prices. Links to an Amazon search with our tracking ID; nothing loads from Amazon until a click.
-      function amz(cls, w, h) {
-        var P = location.pathname.toLowerCase(), brand = '', q = 'coffee machine descaler';
-        var B = [['jura', 'Jura'], ['delonghi', "De'Longhi"], ['magnifica', "De'Longhi"], ['philips', 'Philips'], ['saeco', 'Philips'], ['lattego', 'Philips'], ['nespresso', 'Nespresso'], ['breville', 'Breville'], ['sunbeam', 'Sunbeam']];
-        for (var i = 0; i < B.length; i++) { if (P.indexOf(B[i][0]) > -1) { brand = B[i][1]; break; } }
-        if (brand) q = brand + ' descaling solution';
-        var a = document.createElement('a'); a.className = 'ad adunit amzban ' + cls; a.style.width = w + 'px'; a.style.minHeight = h + 'px';
-        a.href = 'https://www.amazon.com/s?k=' + encodeURIComponent(q) + '&tag=codefixcoffee-20'; a.target = '_blank'; a.rel = 'sponsored nofollow noopener';
-        a.setAttribute('aria-label', 'Advertisement');
-        a.innerHTML = '<span class="amzk">Supplies</span><strong>' + (brand ? 'Descaling and cleaning supplies for ' + brand + ' machines' : 'Descaling and cleaning supplies for coffee machines') + '</strong><em>Search on Amazon</em><small>As an Amazon Associate I earn from qualifying purchases.</small>';
-        return a;
-      }
       function fill() {
         // pages without the footer placeholder (About, Contact, Privacy, editorial policy, supplies) get no ads at all
         if (!document.querySelector('.adunit[data-kind="foot"]')) return;
         var main = document.querySelector('main'); if (!main) return;
         var w = window.innerWidth, rail = document.querySelector('aside.rail .sticky');
-        // One Amazon and one Adsterra banner per page, so the two can be compared.
+        // Adsterra: one banner per page. The Amazon banners are server-rendered by AmazonBlocks.astro where the page's sources justify them.
         if (w >= 1440) {
-          document.body.appendChild(amz('adside adleft', 160, 600));
           document.body.appendChild(unit('adside adright', 'side', 160, 600));
         } else if (w >= 1000 && rail) {
-          rail.appendChild(amz('adrail', 160, 600));
           rail.appendChild(unit('adrail', 'side', 160, 600));
         } else {
-          main.appendChild(amz('adbox', 300, 250));
           main.appendChild(unit('adbox', 'box', 300, 250));
         }
       }
@@ -229,15 +214,56 @@ body { font-size:17px; }
 .facts div:last-child { border-bottom:0; }
 h2 { font-size:23px; margin-top:36px; }
 }
-.amzban { display:flex; flex-direction:column; justify-content:flex-start; gap:10px; box-sizing:border-box; padding:16px 14px; border:1px solid var(--line); background:var(--wash); color:inherit; text-decoration:none; text-align:left; }
-.amzban .amzk { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; opacity:.7; }
-.amzban strong { font-size:1rem; line-height:1.3; }
-.amzban em { font-style:normal; font-weight:600; text-decoration:underline; }
-.amzban small { font-size:.68rem; opacity:.7; line-height:1.35; }
-.amzban.adbox { margin:20px auto; }
-.amzban.adside, .amzban.adrail { min-height:0 !important; }
-@media print { .amzban { display:none; } }
 .adunit[data-kind="foot"] { display:none; }
+.amz-sprite{position:absolute;width:0;height:0;overflow:hidden}
+.amz{--amz-bg1:#0d5c63;--amz-bg2:#073a3f;--amz-hi:#ffd479;--amz-soft:#d9eef0;position:relative;overflow:hidden;box-sizing:border-box;color:#fff;font:400 16px/1.4 var(--sans);background:radial-gradient(120% 90% at 100% 0%,#17808a 0%,rgba(23,128,138,0) 55%),linear-gradient(155deg,var(--amz-bg1),var(--amz-bg2));border-radius:8px;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 6px 18px -8px rgba(7,58,63,.55)}
+.amz *,.amz *::before,.amz *::after{box-sizing:border-box}
+.amz a{color:inherit}
+.amz-art{display:block;color:#fff;pointer-events:none}
+.amz-art svg{display:block;width:100%;height:100%}
+.amz-tag{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--amz-soft)}
+.amz-tag::before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;background:var(--amz-hi);transform:rotate(45deg) translateY(-1px)}
+.amz-kicker{margin:0 0 6px;font:600 13px/1.2 var(--sans);letter-spacing:.02em;color:var(--amz-hi)}
+.amz-head{margin:0;font:700 24px/1.16 var(--serif);letter-spacing:-.012em;color:#fff}
+.amz-body{margin:8px 0 0;font-size:15px;line-height:1.42;color:var(--amz-soft)}
+.amz-items{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.amz-items li{margin:0;padding:0}
+.amz-item{display:inline-flex;align-items:center;min-height:34px;padding:5px 12px;border:1.5px solid rgba(255,255,255,.55);border-radius:999px;color:#fff;text-decoration:none;font:600 14.5px/1.2 var(--sans);background:rgba(255,255,255,.08)}
+.amz-item:hover{background:rgba(255,255,255,.2);border-color:#fff;color:#fff}
+.amz-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:9px 20px;border-radius:6px;background:#fff;color:#073a3f !important;text-decoration:none;font:700 16px/1.15 var(--sans);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.amz-cta::after{content:"";width:9px;height:9px;border-top:2.5px solid currentColor;border-right:2.5px solid currentColor;transform:rotate(45deg);flex:none;transition:transform .15s}
+.amz-cta:hover{background:var(--amz-hi);color:#073a3f}
+.amz-cta:hover::after{transform:translateX(3px) rotate(45deg)}
+.amz a:focus-visible{outline:3px solid var(--amz-hi);outline-offset:3px}
+.amz-cta:focus-visible{outline-color:#fff;box-shadow:0 0 0 6px #073a3f}
+.amz-note{margin:0;font-size:12px;line-height:1.35;color:var(--amz-soft)}
+.amz-gutter{width:160px;height:600px;padding:14px 14px 12px;display:none;flex-direction:column}
+.amz-side{position:fixed;top:110px;left:calc(50% - 540px - 180px);z-index:5;margin:0}
+@media (min-width:1440px){.amz-side{display:flex}}
+.amz-gutter .amz-art{width:140px;height:140px;margin:10px auto 14px}
+.amz-gutter .amz-head{font-size:19px;line-height:1.15}
+.amz-gutter .amz-items{flex-direction:column;gap:7px;margin:14px 0 0}
+.amz-gutter .amz-item{display:flex;width:100%;border-radius:6px;font-size:14px;padding:5px 9px;min-height:36px}
+.amz-gutter .amz-cta{margin-top:auto;width:100%;padding:9px 8px;font-size:15px}
+.amz-gutter .amz-note{margin-top:10px;font-size:11.5px}
+.amz-panel{width:100%;max-width:680px;min-height:200px;padding:16px 26px 14px;margin:28px 0 8px}
+.amz-panel .amz-art{position:absolute;right:-14px;bottom:-26px;width:236px;height:236px;opacity:.95}
+.amz-panel .amz-main{position:relative;max-width:450px;padding-top:2px}
+.amz-panel .amz-tag{position:absolute;top:16px;right:20px}
+.amz-panel .amz-head{font-size:22px;line-height:1.14}
+.amz-panel .amz-body{margin-top:5px;font-size:14.5px;line-height:1.38}
+.amz-panel .amz-items{margin-top:10px}
+.amz-panel .amz-foot{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:10px}
+.amz-panel .amz-note{max-width:230px}
+@media (max-width:560px){.amz-panel{padding:18px 16px 16px}.amz-panel .amz-art{width:140px;height:140px;right:-24px;bottom:auto;top:-22px;opacity:.35}.amz-panel .amz-tag{display:none}.amz-panel .amz-cta{width:100%}.amz-panel .amz-note{max-width:none}}
+.amz-strip{margin:26px 0;padding:10px 14px;background:var(--wash);border-left:3px solid #0d5c63;font-size:.95rem;line-height:1.45}
+.amz-strip p{margin:0 0 3px}
+.amz-strip small{color:var(--muted);font-size:.78rem}
+.amz-inline{margin:.4em 0 1em;font-size:.95rem;color:var(--ink2)}
+.amz-inline small{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.amz-cta::after{transition:none}}
+@media print{.amz,.amz-strip,.amz-inline{display:none!important}}
+footer.site { position:relative; z-index:8; }
 </style></head><body><script>(function(){const haveFr = false;
 const haveDe = false;
 
@@ -316,4 +342,40 @@ const haveDe = false;
     document.body.appendChild(bar);
   } catch (e) {}
 })();
-})();</script><header class="site"><div class="in"><a class="brand" href="/"><svg viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="3" fill="#14181c"></rect><path d="M7 8h12M7 13h12M7 18h6" stroke="#fff" stroke-width="2.2"></path><rect x="16" y="16" width="4.5" height="4.5" fill="#2fa4ad"></rect></svg>CodeFix</a><nav><a href="/breville/">Breville</a><a href="/jura/">Jura</a><a href="/philips-saeco/">Philips / Saeco</a><a href="/delonghi/">De&#39;Longhi</a><a href="/nespresso/">Nespresso</a><a href="/miele/">Miele</a><a href="/ge/">GE</a><a href="/samsung/">Samsung</a><a href="/sunbeam/">Sunbeam</a><a href="/guides/">Guides</a><a href="/faults/">By part</a></nav></div></header><main><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/delonghi/">De&#39;Longhi</a></nav><h1>De&#39;Longhi error codes</h1><a class="supbanner" href="/supplies/"><strong>Cleaning and descaling supplies</strong><span>The products Jura, De'Longhi, Philips and Nespresso name in their own documents, with sources.</span><em>See the list</em></a><p class="lead">General Alarm, Insert Infuser, Water Circuit Empty and the other Magnifica, Dinamica and PrimaDonna messages, with the hidden numeric codes.</p><p>Find your De&#39;Longhi error code below, with what it means and how to fix it. Pick your machine, or start with the most-searched codes.</p><figure class="brand-photo"><img src="/img/delonghi.png" alt="De'Longhi espresso machines" loading="lazy" width="640"><figcaption>Photo: Angela CoffeeRank, CC BY 2.0, via <a href="https://commons.wikimedia.org/wiki/File:De%27Longhi_espresso_machines.png" rel="nofollow">Wikimedia Commons</a> (9 Dec 2020)</figcaption></figure><div class="grid"><a href="/delonghi/magnifica-dinamica/"><strong>De&#39;Longhi Magnifica, Dinamica and PrimaDonna</strong><small>ECAM / ESAM · 9 codes · shown as "General Alarm"</small></a></div><h2>All De&#39;Longhi codes</h2><div class="tablewrap"><table><tr><th>Code</th><th>Meaning</th><th>DIY</th></tr><tr><td><a href="/delonghi/magnifica-dinamica/general-alarm-code-1101-1512/"><code>General Alarm (code 1101 / 1512)</code></a></td><td>Catch-all alarm: the board detected a fault it cannot isolate, most often the infuser (brew unit) or its sensor</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/insert-infuser-assembly/"><code>Insert Infuser Assembly</code></a></td><td>Infuser not detected in its seat</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/insert-grounds-container-empty-grounds-container/"><code>Insert Grounds Container / Empty Grounds Container</code></a></td><td>Grounds container not refitted, or full, or counter not reset</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/water-circuit-empty-fill-circuit/"><code>Water Circuit Empty / Fill Circuit</code></a></td><td>The machine cannot detect water in the circuit; air is trapped or the pump is not priming</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/ground-too-fine-adjust-mill/"><code>Ground Too Fine, Adjust Mill</code></a></td><td>Brew pressure too high: the grind is too fine, or the circuit is blocked</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/insert-water-spout/"><code>Insert Water Spout</code></a></td><td>Machine does not detect the hot-water / milk spout when it needs to run a rinse or relieve pressure</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/grinder-stuck-code-1454/"><code>Grinder stuck (code 1454)</code></a></td><td>Grinder motor stalled</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/leak-alarm-code-3963/"><code>Leak alarm (code 3963)</code></a></td><td>Water detected in the base of the machine</td><td>moderate</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/descale-light-stays-on-after-descaling/"><code>Descale light stays on after descaling</code></a></td><td>Descale cycle not registered as complete</td><td>easy</td></tr></table></div><h2>De’Longhi guides</h2><ul class="list"><li><a href="/delonghi-magnifica-descale-light/">Magnifica descale light: how to clear it<span>documented steps</span></a></li><li><a href="/delonghi-magnifica-s-lights/">Magnifica S lights and icons<span>no numeric codes</span></a></li><li><a href="/empty-drip-tray-grounds-container-message/">Empty / insert grounds container<span>why it will not clear</span></a></li></ul><h2>De&#39;Longhi error code questions</h2><details class="faq" open><summary>How many De&#39;Longhi error codes are covered?</summary><p>9 codes across 1 machine family. Each has its own page with the meaning, the part at fault, the fix and the cost.</p></details><details class="faq"><summary>What does De&#39;Longhi General Alarm (code 1101 / 1512) mean?</summary><p>Catch-all alarm: the board detected a fault it cannot isolate, most often the infuser (brew unit) or its sensor. General Alarm is De&#39;Longhi&#39;s &quot;something is wrong&quot; message. Third-party repair sites say it is most often the infuser: stuck, dirty, out of position, or coffee dust on the sensor that reads its position. Scale that makes the pump labour is another possible cause. The numeric codes 1101 and 1512 are not in De&#39;Longhi&#39;s manuals that we read; we found them only on third-party sites.</p></details><details class="faq"><summary>What does De&#39;Longhi Insert Infuser Assembly mean?</summary><p>Infuser not detected in its seat. The infuser has been refitted after cleaning but is not fully home, or something (a stray puck, a chip of plastic) is stopping it seating. The machine will not run without it.</p></details><details class="faq"><summary>Can I fix De&#39;Longhi errors myself?</summary><p>By our ratings, 8 of the 9 codes are easy, 1 moderate and 0 hard or not recommended for DIY. Each page lists the cheapest checks first and says where to stop.</p></details><div class="ad adunit" data-kind="foot" aria-label="Advertisement"></div></main><footer class="site"><div class="in"><div class="cols"><div><h2>Brands</h2><ul><li><a href="/breville/">Breville / Sage</a></li><li><a href="/jura/">Jura</a></li><li><a href="/philips-saeco/">Philips / Saeco</a></li><li><a href="/delonghi/">De&#39;Longhi</a></li><li><a href="/ge/">GE Appliances</a></li><li><a href="/samsung/">Samsung</a></li><li><a href="/nespresso/">Nespresso</a></li><li><a href="/miele/">Miele</a></li><li><a href="/sunbeam/">Sunbeam</a></li></ul></div><div><h2>Faults by part</h2><ul><li><a href="/faults/temperature-sensor-faults/">Temperature sensors</a></li><li><a href="/faults/grinder-faults/">Grinders and dosing</a></li><li><a href="/faults/brew-group-and-valve-faults/">Brew group and valves</a></li><li><a href="/faults/pump-flow-and-water-faults/">Pumps, flow and water</a></li><li><a href="/faults/boiler-thermoblock-and-heater-faults/">Boilers and heaters</a></li><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a></li></ul></div><div><h2>CodeFix</h2><ul><li><a href="/guides/">Guides</a></li><li><a href="/supplies/">Supplies</a></li><li><a href="/error-codes/">All error codes</a></li><li><a href="https://blog.codefixcoffee.com/">Blog</a></li><li><a href="/au/">Australia</a></li><li><a href="/about/">About</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="legal">CodeFix is an independent repair reference and is not affiliated with any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty and appliances carry mains voltage. Last reviewed 2026-10-09. As an Amazon Associate I earn from qualifying purchases.</div></div></footer></body></html>
+})();</script><header class="site"><div class="in"><a class="brand" href="/"><svg viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="3" fill="#14181c"></rect><path d="M7 8h12M7 13h12M7 18h6" stroke="#fff" stroke-width="2.2"></path><rect x="16" y="16" width="4.5" height="4.5" fill="#2fa4ad"></rect></svg>CodeFix</a><nav><a href="/breville/">Breville</a><a href="/jura/">Jura</a><a href="/philips-saeco/">Philips / Saeco</a><a href="/delonghi/">De&#39;Longhi</a><a href="/nespresso/">Nespresso</a><a href="/miele/">Miele</a><a href="/ge/">GE</a><a href="/samsung/">Samsung</a><a href="/sunbeam/">Sunbeam</a><a href="/guides/">Guides</a><a href="/faults/">By part</a></nav></div></header><main><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/delonghi/">De&#39;Longhi</a></nav><h1>De&#39;Longhi error codes</h1><a class="supbanner" href="/supplies/"><strong>Cleaning and descaling supplies</strong><span>The products Jura, De'Longhi, Philips and Nespresso name in their own documents, with sources.</span><em>See the list</em></a><p class="lead">General Alarm, Insert Infuser, Water Circuit Empty and the other Magnifica, Dinamica and PrimaDonna messages, with the hidden numeric codes.</p><p>Find your De&#39;Longhi error code below, with what it means and how to fix it. Pick your machine, or start with the most-searched codes.</p><figure class="brand-photo"><img src="/img/delonghi.png" alt="De'Longhi espresso machines" loading="lazy" width="640"><figcaption>Photo: Angela CoffeeRank, CC BY 2.0, via <a href="https://commons.wikimedia.org/wiki/File:De%27Longhi_espresso_machines.png" rel="nofollow">Wikimedia Commons</a> (9 Dec 2020)</figcaption></figure><div class="grid"><a href="/delonghi/magnifica-dinamica/"><strong>De&#39;Longhi Magnifica, Dinamica and PrimaDonna</strong><small>ECAM / ESAM · 9 codes · shown as "General Alarm"</small></a></div><h2>All De&#39;Longhi codes</h2><div class="tablewrap"><table><tr><th>Code</th><th>Meaning</th><th>DIY</th></tr><tr><td><a href="/delonghi/magnifica-dinamica/general-alarm-code-1101-1512/"><code>General Alarm (code 1101 / 1512)</code></a></td><td>Catch-all alarm: the board detected a fault it cannot isolate, most often the infuser (brew unit) or its sensor</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/insert-infuser-assembly/"><code>Insert Infuser Assembly</code></a></td><td>Infuser not detected in its seat</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/insert-grounds-container-empty-grounds-container/"><code>Insert Grounds Container / Empty Grounds Container</code></a></td><td>Grounds container not refitted, or full, or counter not reset</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/water-circuit-empty-fill-circuit/"><code>Water Circuit Empty / Fill Circuit</code></a></td><td>The machine cannot detect water in the circuit; air is trapped or the pump is not priming</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/ground-too-fine-adjust-mill/"><code>Ground Too Fine, Adjust Mill</code></a></td><td>Brew pressure too high: the grind is too fine, or the circuit is blocked</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/insert-water-spout/"><code>Insert Water Spout</code></a></td><td>Machine does not detect the hot-water / milk spout when it needs to run a rinse or relieve pressure</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/grinder-stuck-code-1454/"><code>Grinder stuck (code 1454)</code></a></td><td>Grinder motor stalled</td><td>easy</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/leak-alarm-code-3963/"><code>Leak alarm (code 3963)</code></a></td><td>Water detected in the base of the machine</td><td>moderate</td></tr><tr><td><a href="/delonghi/magnifica-dinamica/descale-light-stays-on-after-descaling/"><code>Descale light stays on after descaling</code></a></td><td>Descale cycle not registered as complete</td><td>easy</td></tr></table></div><h2>De’Longhi guides</h2><ul class="list"><li><a href="/delonghi-magnifica-descale-light/">Magnifica descale light: how to clear it<span>documented steps</span></a></li><li><a href="/delonghi-magnifica-s-lights/">Magnifica S lights and icons<span>no numeric codes</span></a></li><li><a href="/empty-drip-tray-grounds-container-message/">Empty / insert grounds container<span>why it will not clear</span></a></li></ul><h2>De&#39;Longhi error code questions</h2><details class="faq" open><summary>How many De&#39;Longhi error codes are covered?</summary><p>9 codes across 1 machine family. Each has its own page with the meaning, the part at fault, the fix and the cost.</p></details><details class="faq"><summary>What does De&#39;Longhi General Alarm (code 1101 / 1512) mean?</summary><p>Catch-all alarm: the board detected a fault it cannot isolate, most often the infuser (brew unit) or its sensor. General Alarm is De&#39;Longhi&#39;s &quot;something is wrong&quot; message. Third-party repair sites say it is most often the infuser: stuck, dirty, out of position, or coffee dust on the sensor that reads its position. Scale that makes the pump labour is another possible cause. The numeric codes 1101 and 1512 are not in De&#39;Longhi&#39;s manuals that we read; we found them only on third-party sites.</p></details><details class="faq"><summary>What does De&#39;Longhi Insert Infuser Assembly mean?</summary><p>Infuser not detected in its seat. The infuser has been refitted after cleaning but is not fully home, or something (a stray puck, a chip of plastic) is stopping it seating. The machine will not run without it.</p></details><details class="faq"><summary>Can I fix De&#39;Longhi errors myself?</summary><p>By our ratings, 8 of the 9 codes are easy, 1 moderate and 0 hard or not recommended for DIY. Each page lists the cheapest checks first and says where to stop.</p></details><div class="ad adunit" data-kind="foot" aria-label="Advertisement"></div></main><footer class="site"><div class="in"><div class="cols"><div><h2>Brands</h2><ul><li><a href="/breville/">Breville / Sage</a></li><li><a href="/jura/">Jura</a></li><li><a href="/philips-saeco/">Philips / Saeco</a></li><li><a href="/delonghi/">De&#39;Longhi</a></li><li><a href="/ge/">GE Appliances</a></li><li><a href="/samsung/">Samsung</a></li><li><a href="/nespresso/">Nespresso</a></li><li><a href="/miele/">Miele</a></li><li><a href="/sunbeam/">Sunbeam</a></li></ul></div><div><h2>Faults by part</h2><ul><li><a href="/faults/temperature-sensor-faults/">Temperature sensors</a></li><li><a href="/faults/grinder-faults/">Grinders and dosing</a></li><li><a href="/faults/brew-group-and-valve-faults/">Brew group and valves</a></li><li><a href="/faults/pump-flow-and-water-faults/">Pumps, flow and water</a></li><li><a href="/faults/boiler-thermoblock-and-heater-faults/">Boilers and heaters</a></li><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a></li></ul></div><div><h2>CodeFix</h2><ul><li><a href="/guides/">Guides</a></li><li><a href="/supplies/">Supplies</a></li><li><a href="/error-codes/">All error codes</a></li><li><a href="https://blog.codefixcoffee.com/">Blog</a></li><li><a href="/au/">Australia</a></li><li><a href="/about/">About</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="legal">CodeFix is an independent repair reference and is not affiliated with any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty and appliances carry mains voltage. Last reviewed 2026-10-09. As an Amazon Associate I earn from qualifying purchases.</div></div></footer><script>
+    // Amazon in-text sentences and one slim strip between sections, from the JSON written by AmazonBlocks.astro.
+    (function () {
+      var d = document.getElementById('amz-data'); if (!d) return;
+      var D; try { D = JSON.parse(d.textContent); } catch (e) { return; }
+      var TAG = 'codefixcoffee-20';
+      function link(q, label) { var a = document.createElement('a'); a.href = 'https://www.amazon.com/s?k=' + encodeURIComponent(q) + '&tag=' + TAG; a.rel = 'sponsored nofollow noopener'; a.target = '_blank'; a.textContent = label; return a; }
+      function norm(t) { return (t || '').replace(/\s+/g, ' ').trim(); }
+      function find(phrase) {
+        var main = document.querySelector('main'); if (!main) return null;
+        var els = main.querySelectorAll('p, li, td, dd, div'), best = null;
+        for (var i = 0; i < els.length; i++) { var e = els[i]; if (e.closest('.amz, .affnote')) continue; if (norm(e.textContent).indexOf(phrase) > -1 && (!best || best.contains(e))) best = e; }
+        return best;
+      }
+      function run() {
+        D.inline.forEach(function (it) {
+          var host = find(it.after); if (!host) return;
+          var p = document.createElement('p'); p.className = 'amz-inline';
+          var i = it.text.indexOf(it.label);
+          if (i > -1) { p.appendChild(document.createTextNode(it.text.slice(0, i))); p.appendChild(link(it.q, it.label)); p.appendChild(document.createTextNode(it.text.slice(i + it.label.length))); }
+          else { p.appendChild(document.createTextNode(it.text + ' ')); p.appendChild(link(it.q, it.label)); }
+          var n = document.createElement('small'); n.textContent = ' (affiliate link)'; p.appendChild(n);
+          host.parentNode.insertBefore(p, host.nextSibling);
+        });
+        var h2 = document.querySelectorAll('main h2:not(.amz *)');
+        if (D.panel && h2.length >= 4 && D.items && D.items.length) {
+          var s = document.createElement('aside'); s.className = 'amz-strip'; s.setAttribute('aria-label', 'Affiliate note');
+          var t = document.createElement('p'); t.appendChild(document.createTextNode('Supplies named in the sources for this page: '));
+          D.items.slice(0, 3).forEach(function (it, k) { if (k) t.appendChild(document.createTextNode(', ')); t.appendChild(link(it.q, it.label)); });
+          t.appendChild(document.createTextNode('.')); s.appendChild(t);
+          var sm = document.createElement('small'); sm.textContent = 'As an Amazon Associate I earn from qualifying purchases.'; s.appendChild(sm);
+          h2[Math.min(2, h2.length - 1)].parentNode.insertBefore(s, h2[Math.min(2, h2.length - 1)]);
+        }
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+    })();
+  </script></body></html>
