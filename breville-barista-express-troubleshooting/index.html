@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="en" data-locale="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Breville Barista Express troubleshooting: lights and fixes</title><meta name="description" content="Barista Express BES870 lights, no crema, pressure gauge, no steam, grinder and leak problems, plus clean and descale lights, from Breville's own manuals."><meta name="msvalidate.01" content="70556BAB861C7A4936C438E2D34992C3"><link rel="alternate" hreflang="en" href="https://codefixcoffee.com/breville-barista-express-troubleshooting/" />
+  <link rel="alternate" hreflang="x-default" href="https://codefixcoffee.com/breville-barista-express-troubleshooting/"><link rel="canonical" href="https://codefixcoffee.com/breville-barista-express-troubleshooting/"><meta property="og:title" content="Breville Barista Express troubleshooting: lights and fixes"><meta property="og:description" content="Barista Express BES870 lights, no crema, pressure gauge, no steam, grinder and leak problems, plus clean and descale lights, from Breville's own manuals."><meta property="og:type" content="article"><meta property="og:url" content="https://codefixcoffee.com/breville-barista-express-troubleshooting/"><meta property="og:site_name" content="CodeFix"><meta property="og:image" content="https://codefixcoffee.com/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://codefixcoffee.com/og-image.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"><link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png"><link rel="icon" href="/favicon.ico" sizes="48x48 32x32 16x16"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="sitemap" href="/sitemap-index.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"CodeFix","alternateName":["CodeFix Coffee","codefixcoffee.com"],"url":"https://codefixcoffee.com/","description":"Look up espresso machine and appliance error codes, with the fix first."}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"CodeFix","url":"https://codefixcoffee.com/","description":"Independent reference for appliance error codes and repairs."}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is the CLEAN / DESCALE light flashing on my Barista Express?","acceptedAnswer":{"@type":"Answer","text":"Breville says a flashing light means the machine wants a cleaning cycle. That is a back-flush with a cleaning tablet and the supplied cleaning disc, and it is separate from descaling. A solid light means descaling is due."}},{"@type":"Question","name":"Why is there no crema?","acceptedAnswer":{"@type":"Answer","text":"Breville lists stale beans or old pre-ground coffee, a grind that is too coarse, tamping that is too light, and blocked filter basket holes. The US book also gives a freshness guide: whole beans with a roast date, used 5 to 20 days after it, and pre-ground coffee used within a week of grinding."}},{"@type":"Question","name":"Why does the steam light flash when I switch the machine on?","acceptedAnswer":{"@type":"Answer","text":"Breville gives one cause for the BES870: the steam dial is not in the standby position. Turn it to standby and the machine heats up normally. During normal heating the power button also flashes until the machine is ready."}},{"@type":"Question","name":"The machine is on but stopped working. What now?","acceptedAnswer":{"@type":"Answer","text":"Breville says a thermal cut-out may have tripped because the pump or grinder overheated. Switch off, unplug, and wait 30 to 60 minutes. If it keeps happening, contact Breville support."}},{"@type":"Question","name":"Does Breville list an error code for the Barista Express?","acceptedAnswer":{"@type":"Answer","text":"Not in the instruction books we read. The BES870 books describe problems through lights and a pressure gauge, with no numbered codes."}},{"@type":"Question","name":"What about a Sage-branded Barista Express?","acceptedAnswer":{"@type":"Answer","text":"We read Breville BES870 instruction books only. If your machine carries the Sage name, we did not read a Sage book for it, so check your own manual where a step differs."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://codefixcoffee.com/"},{"@type":"ListItem","position":2,"name":"Breville","item":"https://codefixcoffee.com/breville/"},{"@type":"ListItem","position":3,"name":"Barista Express troubleshooting","item":"https://codefixcoffee.com/breville-barista-express-troubleshooting/"}]}</script><script>(function(){const adFrameHost = "https://ads.codefixcoffee.com";
+
+    // Ads. Every unit is an iframe to a page on our own registered ad host (ads.codefixcoffee.com), which holds the ad network's code.
+    // Layout: 160x600 banners in the side gutters (1440px and up) or the code-page rail (1000 to 1439px), a 300x250 after the article
+    // on narrower screens. One Amazon banner plus one Adsterra banner per page; no footer banner. Nothing goes inside the article text.
+    // Every visitor gets the same banners; there is no consent prompt (see the privacy policy).
+    (function () {
+      function unit(cls, page, w, h) {
+        var d = document.createElement('div'); d.className = 'ad adunit ' + cls; d.setAttribute('aria-label', 'Advertisement');
+        var f = document.createElement('iframe');
+        f.src = adFrameHost + '/' + page + '.html'; f.width = w; f.height = h; f.loading = 'lazy'; f.setAttribute('scrolling', 'no'); f.setAttribute('frameborder', '0');
+        f.style.border = '0'; f.style.display = 'block'; f.style.margin = '0 auto'; f.style.maxWidth = '100%'; f.title = 'Advertisement';
+        d.appendChild(f); return d;
+      }
+      function fill() {
+        // pages without the footer placeholder (About, Contact, Privacy, editorial policy, supplies) get no ads at all
+        if (!document.querySelector('.adunit[data-kind="foot"]')) return;
+        var main = document.querySelector('main'); if (!main) return;
+        var w = window.innerWidth, rail = document.querySelector('aside.rail .sticky');
+        // Adsterra: one banner per page. The Amazon banners are server-rendered by AmazonBlocks.astro where the page's sources justify them.
+        if (w >= 1440) {
+          document.body.appendChild(unit('adside adright', 'side', 160, 600));
+        } else if (w >= 1000 && rail) {
+          rail.appendChild(unit('adrail', 'side', 160, 600));
+        } else {
+          main.appendChild(unit('adbox', 'box', 300, 250));
+        }
+      }
+      function run() { fill(); }
+      addEventListener('load', function () { setTimeout(run, 1500); });
+    })();
+  })();</script><link rel="preload" href="/fonts/source-serif-4-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/source-serif-4-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/source-serif-4-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/source-serif-4-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/source-serif-4-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/source-sans-3-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/source-sans-3-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/source-sans-3-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/source-sans-3-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root {
+--ink:#14181c; --ink2:#38424a; --muted:#66727b; --paper:#fff; --wash:#f3f5f5; --line:#dde3e5;
+--accent:#0d5c63; --accent-dark:#094349; --accent-wash:#e2eff0; --caution:#b4440b; --ok:#2c7a4b; --warn:#96600a;
+--serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+--sans:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--r:4px; --w:1080px;
+}
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; overflow-x:clip; }
+body { margin:0; font:18px/1.62 var(--sans); color:var(--ink2); background:var(--paper); }
+a { color:var(--accent); text-underline-offset:2px; }
+a:hover { color:var(--accent-dark); }
+img { max-width:100%; }
+header.site { background:var(--paper); border-bottom:1px solid var(--line); }
+header.site .in { max-width:var(--w); margin:0 auto; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; gap:12px 28px; flex-wrap:wrap; }
+header.site a.brand { display:flex; align-items:center; gap:10px; font:700 24px/1 var(--serif); letter-spacing:-.01em; text-decoration:none; color:var(--ink); }
+header.site a.brand svg { width:26px; height:26px; flex:none; }
+header.site nav { display:flex; flex-wrap:wrap; gap:4px 20px; }
+header.site nav a { white-space:nowrap; text-decoration:none; color:var(--ink2); font-size:16px; font-weight:600; padding:6px 0; border-bottom:2px solid transparent; }
+header.site nav a:hover { color:var(--ink); border-bottom-color:var(--accent); }
+main { max-width:var(--w); margin:0 auto; padding:26px 22px 56px; }
+nav.crumbs { font-size:14px; color:var(--muted); margin-bottom:14px; }
+nav.crumbs a { color:var(--muted); text-decoration:none; }
+nav.crumbs a:hover { color:var(--accent); text-decoration:underline; }
+h1,h2,h3 { font-family:var(--serif); color:var(--ink); letter-spacing:-.012em; font-weight:700; }
+h1 { font-size:clamp(30px,5vw,42px); line-height:1.12; margin:0 0 14px; }
+h2 { font-size:26px; line-height:1.2; margin:44px 0 14px; }
+h3 { font-size:19px; margin:22px 0 6px; }
+p { margin:0 0 14px; }
+.lead { font-size:20px; line-height:1.5; color:var(--ink2); margin:0 0 22px; max-width:46em; }
+.note { font-size:14.5px; color:var(--muted); }
+code { font-family:var(--mono); font-weight:500; font-size:.88em; background:var(--wash); padding:1px 6px; border-radius:2px; color:var(--ink); }
+.ad { min-height:90px; margin:28px 0; }
+.adbox { min-height:250px; text-align:center; }
+.adfoot { min-height:50px; }
+.adside { position:fixed; top:110px; width:160px; min-height:600px; margin:0; z-index:5; }
+.adleft { left:calc(50% - 540px - 180px); }
+.adright { left:calc(50% + 540px + 20px); }
+.adrail { margin-top:24px; min-height:600px; }
+@media print { .adunit, #adconsent { display:none; } }
+#adconsent { position:fixed; left:12px; right:12px; bottom:12px; z-index:50; max-width:560px; margin:0 auto; padding:12px 14px; background:#fff; color:#222; border:1px solid #bbb; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,.2); font-size:14px; }
+#adconsent p { margin:0 0 8px; }
+#adconsent button { font:inherit; padding:6px 14px; border:1px solid #666; border-radius:6px; background:#f3f3f3; color:#222; cursor:pointer; }
+.hero { background:var(--wash); border-bottom:1px solid var(--line); margin:-26px calc(50% - 50vw) 36px; padding:44px calc(50vw - 50%) 40px; }
+.hero h1 { font-size:clamp(34px,6vw,52px); max-width:15em; }
+.hero .lead { max-width:40em; }
+.hero .finder { max-width:640px; }
+.stats { display:flex; flex-wrap:wrap; gap:6px 34px; margin-top:26px; font-size:15px; color:var(--muted); }
+.stats b { font:500 22px var(--mono); color:var(--ink); margin-right:6px; }
+.finder { margin:0 0 24px; }
+.finder label { display:block; font-weight:600; color:var(--ink); margin-bottom:8px; }
+.finder .row { display:flex; gap:0; }
+.finder input { flex:1; min-width:0; font:inherit; padding:13px 14px; border:1.5px solid var(--ink); border-right:0; border-radius:var(--r) 0 0 var(--r); background:#fff; color:var(--ink); }
+.finder input:focus { outline:3px solid var(--accent-wash); border-color:var(--accent); }
+.finder button { font:600 16px var(--sans); padding:0 22px; border:1.5px solid var(--accent); background:var(--accent); color:#fff; border-radius:0 var(--r) var(--r) 0; cursor:pointer; }
+.finder button:hover { background:var(--accent-dark); border-color:var(--accent-dark); }
+.finder ul { list-style:none; margin:6px 0 0; padding:0; background:#fff; border:1px solid var(--line); border-radius:var(--r); }
+.finder ul:empty { display:none; }
+.finder li a { display:block; padding:10px 14px; border-top:1px solid var(--line); text-decoration:none; color:var(--ink); font-weight:600; }
+.finder li:first-child a { border-top:0; }
+.finder li a:hover { background:var(--accent-wash); }
+.finder li small { display:block; font-weight:400; color:var(--muted); }
+.tiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; margin:0 0 8px; }
+.tiles a { display:flex; flex-direction:column; justify-content:space-between; gap:18px; min-height:104px; padding:16px 18px; background:#fff; border:1px solid var(--line); border-radius:var(--r); text-decoration:none; color:var(--ink); transition:border-color .12s, transform .12s; }
+.tiles a:hover { border-color:var(--accent); transform:translateY(-1px); }
+.tiles strong { font:700 20px/1.2 var(--serif); }
+.tiles small { font:500 13px var(--mono); color:var(--muted); display:flex; justify-content:space-between; }
+.tiles small::after { content:'→'; color:var(--accent); font-family:var(--sans); font-size:16px; }
+.list { list-style:none; margin:0; padding:0; columns:2 300px; column-gap:40px; }
+.list li { break-inside:avoid; }
+.list a { display:flex; justify-content:space-between; gap:14px; padding:10px 0; border-bottom:1px solid var(--line); text-decoration:none; color:var(--ink); font-weight:600; }
+.list a span { font:500 13.5px var(--mono); color:var(--muted); white-space:nowrap; padding-top:3px; }
+.list a:hover { color:var(--accent); }
+.grid { columns:2 280px; column-gap:36px; }
+.grid a { display:block; break-inside:avoid; padding:9px 0; border-bottom:1px solid var(--line); text-decoration:none; color:var(--ink); }
+.grid a strong { color:var(--accent); }
+.grid a:hover strong { text-decoration:underline; }
+.grid a small { display:block; color:var(--muted); font-size:15px; }
+.tablewrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); }
+table { border-collapse:collapse; width:100%; font-size:15.5px; }
+th,td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { background:var(--wash); color:var(--ink); font-size:13px; text-transform:uppercase; letter-spacing:.05em; }
+tr:last-child td { border-bottom:0; }
+tbody tr:hover td, table tr:hover td { background:#fafcfc; }
+td a code { color:var(--accent); background:var(--accent-wash); }
+.codehead { display:flex; gap:22px; align-items:flex-start; margin-bottom:18px; }
+.display { flex:none; min-width:120px; background:var(--ink); color:#f4f6f6; font:500 clamp(26px,4.4vw,38px)/1 var(--mono); letter-spacing:.06em; padding:18px 20px; border-radius:var(--r); text-align:center; border-bottom:4px solid var(--accent); }
+.display small { display:block; font:500 11px var(--mono); letter-spacing:.14em; text-transform:uppercase; color:#9aa7ad; margin-top:10px; }
+.codehead h1 { margin-top:-4px; }
+.page { display:grid; grid-template-columns:minmax(0,1fr); gap:0 48px; }
+@media (min-width:1000px) { .page.rail { grid-template-columns:minmax(0,1fr) 270px; } }
+aside.rail { font-size:16px; }
+aside.rail .sticky { position:sticky; top:20px; }
+aside.rail h2 { font:600 13px var(--sans); text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:26px 0 8px; }
+aside.rail h2:first-child { margin-top:0; }
+aside.rail ul { list-style:none; margin:0; padding:0; }
+aside.rail li { padding:7px 0; border-bottom:1px solid var(--line); line-height:1.35; }
+aside.rail li small { display:block; color:var(--muted); font-size:14px; }
+.box { border:1px solid var(--line); border-radius:var(--r); padding:16px 20px; margin:18px 0; }
+.box.answer { background:var(--accent-wash); border:0; padding:18px 22px; font-size:19px; color:var(--ink); }
+.box.answer strong:first-child { font:600 12px var(--mono); text-transform:uppercase; letter-spacing:.1em; color:var(--accent-dark); display:block; margin-bottom:4px; }
+.facts { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); margin:20px 0; border:1px solid var(--line); border-radius:var(--r); }
+.facts div { padding:12px 16px; font-size:17px; color:var(--ink); border-right:1px solid var(--line); }
+.facts div:last-child { border-right:0; }
+.facts b { display:block; font:600 11.5px var(--sans); text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:2px; }
+.sev-low { color:var(--ok); font-weight:600; } .sev-medium { color:var(--warn); font-weight:600; } .sev-high { color:var(--caution); font-weight:600; }
+ol.steps { list-style:none; counter-reset:s; margin:0; padding:0; }
+ol.steps li { counter-increment:s; position:relative; padding:4px 0 16px 54px; margin:0; }
+ol.steps li::before { content:counter(s); position:absolute; left:0; top:0; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font:700 18px var(--serif); color:var(--accent); border:1.5px solid var(--accent); border-radius:var(--r); background:#fff; }
+details.faq { border-top:1px solid var(--line); padding:0; }
+details.faq:last-of-type { border-bottom:1px solid var(--line); }
+details.faq summary { cursor:pointer; list-style:none; padding:14px 34px 14px 0; font:600 19px/1.35 var(--serif); color:var(--ink); position:relative; }
+details.faq summary::-webkit-details-marker { display:none; }
+details.faq summary::after { content:'+'; position:absolute; right:4px; top:12px; font:400 26px var(--sans); color:var(--accent); }
+details.faq[open] summary::after { content:'–'; }
+details.faq p { margin:0 0 16px; }
+.brand-photo { margin:0 0 24px; }
+.brand-photo img { max-width:680px; width:100%; height:auto; border-radius:2px; display:block; }
+.brand-photo figcaption { font-size:12.5px; color:var(--muted); margin-top:6px; }
+.band { background:var(--wash); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:48px calc(50% - 50vw) 0; padding:34px calc(50vw - 50%); }
+.steps3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px; counter-reset:t; }
+.steps3 div { counter-increment:t; }
+.steps3 div::before { content:'0' counter(t); font:500 14px var(--mono); color:var(--accent); display:block; margin-bottom:6px; }
+.steps3 h3 { margin:0 0 4px; }
+.steps3 p { margin:0; font-size:16.5px; }
+.flow { margin:22px 0; overflow-x:auto; color:var(--muted); }
+.flow svg { width:100%; max-width:560px; height:auto; display:block; }
+.flow .t { font:14px/1.2 var(--sans); fill:var(--ink); }
+.flow .t.inv { fill:#fff; }
+.flow .s { font:12px var(--sans); fill:var(--muted); }
+.flow .start { fill:var(--ink); }
+.flow .step { fill:#fff; stroke:var(--ink); stroke-width:1.25; }
+.flow .ask { fill:var(--wash); stroke:var(--ink); stroke-width:1.25; }
+.flow .ok { fill:#fff; stroke:var(--ok); stroke-width:1.5; }
+.flow .stop { fill:#fff; stroke:var(--caution); stroke-width:1.5; }
+.langnav { max-width:var(--w); margin:0 auto; padding:6px 22px 0; font-size:14px; }
+.langnav details { display:inline-block; position:relative; }
+.langnav summary { cursor:pointer; list-style:none; padding:2px 10px; border:1px solid var(--line); border-radius:var(--r); display:inline-block; color:var(--ink2); }
+.langnav summary::-webkit-details-marker { display:none; }
+.langnav ul { position:absolute; left:0; top:100%; margin:2px 0 0; padding:4px 0; background:#fff; border:1px solid var(--ink); border-radius:var(--r); list-style:none; z-index:50; min-width:150px; }
+.langnav a { display:block; padding:6px 14px; color:var(--ink); text-decoration:none; white-space:nowrap; }
+.langnav a:hover { background:var(--wash); }
+.langbar { position:fixed; left:0; right:0; bottom:0; display:flex; gap:14px; justify-content:center; align-items:center; background:var(--wash); color:var(--ink); padding:10px 16px; border-top:1px solid var(--ink); font-size:15px; z-index:60; }
+.langbar a { color:var(--accent); font-weight:600; }
+.langbar button { background:none; border:0; color:var(--muted); cursor:pointer; font-size:14px; }
+.untranslated-note { background:var(--wash); border:1px solid var(--line); border-radius:var(--r); margin:12px 0; padding:10px 14px; font-size:15px; }
+.untranslated-note a { font-weight:600; }
+footer.site { background:var(--ink); color:#aab5bb; margin-top:56px; padding:40px 22px 28px; font-size:15px; }
+footer.site .in { max-width:var(--w); margin:0 auto; }
+footer.site .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:26px; margin-bottom:30px; }
+footer.site h2 { font:600 12px var(--sans); text-transform:uppercase; letter-spacing:.09em; color:#fff; margin:0 0 10px; }
+footer.site ul { list-style:none; margin:0; padding:0; }
+footer.site li { padding:3px 0; }
+footer.site a { color:#aab5bb; text-decoration:none; }
+footer.site a:hover { color:#fff; text-decoration:underline; }
+footer.site .legal { border-top:1px solid #2a343a; padding-top:18px; font-size:13.5px; line-height:1.55; max-width:70em; }
+footer:not(.site) { border-top:1px solid var(--line); margin-top:32px; padding:20px; text-align:center; font-size:14px; color:var(--muted); }
+footer:not(.site) a { color:var(--muted); margin:0 8px; }
+.prov strong:first-child { display:block; margin-bottom:6px; }
+.affnote { margin:20px 0; padding:12px 16px; border:1px solid var(--line, #ddd); border-left:4px solid var(--accent, #8a5a2b); border-radius:8px; }
+.affnote p { margin:0 0 8px; }
+.affnote ul { margin:0 0 8px; padding-left:20px; }
+.supbanner { display:block; margin:20px 0; padding:14px 16px; border:1px solid var(--line, #ddd); border-left:4px solid var(--accent, #8a5a2b); border-radius:8px; text-decoration:none; color:inherit; }
+.supbanner strong { display:block; }
+.supbanner span { display:block; margin:2px 0 6px; color:var(--muted); font-size:14px; }
+.supbanner em { font-style:normal; text-decoration:underline; }
+@media (max-width:640px) {
+body { font-size:17px; }
+.codehead { flex-direction:column; gap:14px; }
+.facts div { border-right:0; border-bottom:1px solid var(--line); }
+.facts div:last-child { border-bottom:0; }
+h2 { font-size:23px; margin-top:36px; }
+}
+.adunit[data-kind="foot"] { display:none; }
+.amz-sprite{position:absolute;width:0;height:0;overflow:hidden}
+.amz{--amz-bg1:#0d5c63;--amz-bg2:#073a3f;--amz-hi:#ffd479;--amz-soft:#d9eef0;position:relative;overflow:hidden;box-sizing:border-box;color:#fff;font:400 16px/1.4 var(--sans);background:radial-gradient(120% 90% at 100% 0%,#17808a 0%,rgba(23,128,138,0) 55%),linear-gradient(155deg,var(--amz-bg1),var(--amz-bg2));border-radius:8px;box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 6px 18px -8px rgba(7,58,63,.55)}
+.amz *,.amz *::before,.amz *::after{box-sizing:border-box}
+.amz a{color:inherit}
+.amz-art{display:block;color:#fff;pointer-events:none}
+.amz-art svg{display:block;width:100%;height:100%}
+.amz-tag{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--amz-soft)}
+.amz-tag::before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;background:var(--amz-hi);transform:rotate(45deg) translateY(-1px)}
+.amz-kicker{margin:0 0 6px;font:600 13px/1.2 var(--sans);letter-spacing:.02em;color:var(--amz-hi)}
+.amz-head{margin:0;font:700 24px/1.16 var(--serif);letter-spacing:-.012em;color:#fff}
+.amz-body{margin:8px 0 0;font-size:15px;line-height:1.42;color:var(--amz-soft)}
+.amz-items{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.amz-items li{margin:0;padding:0}
+.amz-item{display:inline-flex;align-items:center;min-height:34px;padding:5px 12px;border:1.5px solid rgba(255,255,255,.55);border-radius:999px;color:#fff;text-decoration:none;font:600 14.5px/1.2 var(--sans);background:rgba(255,255,255,.08)}
+.amz-item:hover{background:rgba(255,255,255,.2);border-color:#fff;color:#fff}
+.amz-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:9px 20px;border-radius:6px;background:#fff;color:#073a3f !important;text-decoration:none;font:700 16px/1.15 var(--sans);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.amz-cta::after{content:"";width:9px;height:9px;border-top:2.5px solid currentColor;border-right:2.5px solid currentColor;transform:rotate(45deg);flex:none;transition:transform .15s}
+.amz-cta:hover{background:var(--amz-hi);color:#073a3f}
+.amz-cta:hover::after{transform:translateX(3px) rotate(45deg)}
+.amz a:focus-visible{outline:3px solid var(--amz-hi);outline-offset:3px}
+.amz-cta:focus-visible{outline-color:#fff;box-shadow:0 0 0 6px #073a3f}
+.amz-note{margin:0;font-size:12px;line-height:1.35;color:var(--amz-soft)}
+.amz-gutter{width:160px;height:600px;padding:14px 14px 12px;display:none;flex-direction:column}
+.amz-side{position:fixed;top:110px;left:calc(50% - 540px - 180px);z-index:5;margin:0}
+@media (min-width:1440px){.amz-side{display:flex}}
+.amz-gutter .amz-art{width:140px;height:140px;margin:10px auto 14px}
+.amz-gutter .amz-head{font-size:19px;line-height:1.15}
+.amz-gutter .amz-items{flex-direction:column;gap:7px;margin:14px 0 0}
+.amz-gutter .amz-item{display:flex;width:100%;border-radius:6px;font-size:14px;padding:5px 9px;min-height:36px}
+.amz-gutter .amz-cta{margin-top:auto;width:100%;padding:9px 8px;font-size:15px}
+.amz-gutter .amz-note{margin-top:10px;font-size:11.5px}
+.amz-panel{width:100%;max-width:680px;min-height:200px;padding:16px 26px 14px;margin:28px 0 8px}
+.amz-panel .amz-art{position:absolute;right:-14px;bottom:-26px;width:236px;height:236px;opacity:.95}
+.amz-panel .amz-main{position:relative;max-width:450px;padding-top:2px}
+.amz-panel .amz-tag{position:absolute;top:16px;right:20px}
+.amz-panel .amz-head{font-size:22px;line-height:1.14}
+.amz-panel .amz-body{margin-top:5px;font-size:14.5px;line-height:1.38}
+.amz-panel .amz-items{margin-top:10px}
+.amz-panel .amz-foot{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:10px}
+.amz-panel .amz-note{max-width:230px}
+@media (max-width:560px){.amz-panel{padding:18px 16px 16px}.amz-panel .amz-art{width:140px;height:140px;right:-24px;bottom:auto;top:-22px;opacity:.35}.amz-panel .amz-tag{display:none}.amz-panel .amz-cta{width:100%}.amz-panel .amz-note{max-width:none}}
+.amz-strip{margin:26px 0;padding:10px 14px;background:var(--wash);border-left:3px solid #0d5c63;font-size:.95rem;line-height:1.45}
+.amz-strip p{margin:0 0 3px}
+.amz-strip small{color:var(--muted);font-size:.78rem}
+.amz-inline{margin:.4em 0 1em;font-size:.95rem;color:var(--ink2)}
+.amz-inline small{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.amz-cta::after{transition:none}}
+@media print{.amz,.amz-strip,.amz-inline{display:none!important}}
+footer.site { position:relative; z-index:8; }
+
+.beyond { margin-top:8px; }
+.beyond h3 { font:600 13px var(--sans); text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:24px 0 8px; }
+.box.dyk { background:var(--wash); border:0; border-left:4px solid var(--accent); border-radius:0 var(--r) var(--r) 0; padding:16px 22px; color:var(--ink); }
+.box.dyk strong:first-child { font:600 12px var(--mono); text-transform:uppercase; letter-spacing:.1em; color:var(--accent-dark); display:block; margin-bottom:4px; }
+ul.tips { margin:0 0 6px; padding:0 0 0 1.25em; }
+ul.tips li { padding:3px 0; }
+small.via { display:inline-block; margin-left:8px; font:500 12.5px var(--mono); color:var(--muted); white-space:nowrap; }
+small.via a { color:var(--muted); }
+small.via a:hover { color:var(--accent); }
+ul.sources { list-style:none; margin:0; padding:0; font-size:16px; }
+ul.sources li { padding:7px 0; border-bottom:1px solid var(--line); }
+ul.sources li:first-child { border-top:1px solid var(--line); }
+.deep { margin-top:8px; }
+.deep h3 { font:600 13px var(--sans); text-transform:uppercase; letter-spacing:.07em; color:var(--muted); margin:24px 0 8px; }
+.deep p { margin:0 0 12px; }
+.deep-updated { color:var(--muted); }
+</style></head><body><script>(function(){const haveFr = false;
+const haveDe = false;
+
+// Language defaulting (browser language first, then timezone; never IP).
+// - Explicit switcher choice wins forever (localStorage + cookie shared across subdomains).
+// - EN master only: first visit redirects (location.replace, back-button safe) to the
+//   local language; afterwards only a dismissible banner shows — never a bounce loop.
+// - Crawlers (US, en, US timezone) never trigger it; hreflang equity stays intact.
+(function () {
+  try {
+    var SITES = { en: 'https://codefixcoffee.com', fr: 'https://fr.codefixcoffee.com', de: 'https://de.codefixcoffee.com' };
+    var NATIVE = { fr: 'Français', de: 'Deutsch' };
+    var HERE = document.documentElement.getAttribute('data-locale') || 'en';
+
+    // Record an explicit language choice made in the switcher on ANY locale site.
+    document.addEventListener('click', function (ev) {
+      var el = ev.target;
+      var a = el && el.closest ? el.closest('.langnav a') : null;
+      if (!a) return;
+      var loc = a.getAttribute('hreflang');
+      if (!loc) return;
+      try { localStorage.setItem('langchoice', loc); } catch (e) {}
+      try { document.cookie = 'langchoice=' + loc + ';path=/;max-age=31536000;domain=.codefixcoffee.com;SameSite=Lax'; } catch (e) {}
+    }, true);
+
+    if (HERE !== 'en') return; // auto-defaulting only originates from the EN master
+
+    // An explicit choice anywhere on the domain suppresses auto-defaulting.
+    try { if (localStorage.getItem('langchoice')) return; } catch (e) {}
+    if (/(?:^|;\s*)langchoice=[^;]/.test(document.cookie || '')) return;
+
+    var wanted = (navigator.languages || [navigator.language || '']).map(function (l) { return (l || '').split('-')[0].toLowerCase(); });
+    var primary = wanted[0] || '';
+    var strong = (primary === 'de' || primary === 'fr') ? primary : null; // e.g. a German browser anywhere
+    // Timezone fallback: Switzerland → German (English-first browsers of residents in CH).
+    var tzPick = null;
+    try { if ((Intl.DateTimeFormat().resolvedOptions().timeZone || '') === 'Europe/Zurich') tzPick = 'de'; } catch (e) {}
+    // Weaker signal: de/fr present but not first preference → banner only, no redirect.
+    var weak = null;
+    for (var i = 1; i < wanted.length && !weak; i++) { if (wanted[i] === 'de' || wanted[i] === 'fr') weak = wanted[i]; }
+    var redirectTarget = strong || tzPick;
+    var bannerTarget = weak || tzPick;
+    if (!redirectTarget && !bannerTarget) return;
+    // Never send visitors to a translated URL that does not exist (hubs, guides and /au/ are English-only for now).
+    var HAVE = { fr: haveFr, de: haveDe };
+    if (redirectTarget && !HAVE[redirectTarget]) redirectTarget = null;
+    if (bannerTarget && !HAVE[bannerTarget]) bannerTarget = null;
+    if (!redirectTarget && !bannerTarget) return;
+
+    var dismissed = 'langsuggest.' + (redirectTarget || bannerTarget);
+    try { if (localStorage.getItem(dismissed)) return; } catch (e) {}
+
+    if (redirectTarget) {
+      var autoKey = 'langauto.' + redirectTarget;
+      var already = false;
+      try { already = !!localStorage.getItem(autoKey); } catch (e) {}
+      if (!already) {
+        try { localStorage.setItem(autoKey, '1'); } catch (e) {}
+        location.replace(SITES[redirectTarget] + location.pathname);
+        return;
+      }
+    }
+
+    var target = redirectTarget || bannerTarget;
+    var key = 'langsuggest.' + target;
+    var bar = document.createElement('div');
+    bar.className = 'langbar';
+    var a = document.createElement('a');
+    a.href = SITES[target] + location.pathname;
+    a.textContent = NATIVE[target] + ' →';
+    var x = document.createElement('button');
+    x.textContent = '✕';
+    x.setAttribute('aria-label', 'dismiss');
+    x.onclick = function () { try { localStorage.setItem(key, '1'); } catch (e) {} bar.remove(); };
+    bar.appendChild(a); bar.appendChild(x);
+    document.body.appendChild(bar);
+  } catch (e) {}
+})();
+})();</script><header class="site"><div class="in"><a class="brand" href="/"><svg viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="3" fill="#14181c"></rect><path d="M7 8h12M7 13h12M7 18h6" stroke="#fff" stroke-width="2.2"></path><rect x="16" y="16" width="4.5" height="4.5" fill="#2fa4ad"></rect></svg>CodeFix</a><nav><a href="/breville/">Breville</a><a href="/jura/">Jura</a><a href="/philips-saeco/">Philips / Saeco</a><a href="/delonghi/">De&#39;Longhi</a><a href="/nespresso/">Nespresso</a><a href="/miele/">Miele</a><a href="/ge/">GE</a><a href="/samsung/">Samsung</a><a href="/sunbeam/">Sunbeam</a><a href="/guides/">Guides</a><a href="/faults/">By part</a></nav></div></header><main><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/breville/">Breville</a> › <a href="/breville-barista-express-troubleshooting/">Barista Express troubleshooting</a></nav><h1>Breville Barista Express troubleshooting: lights and common faults</h1><p class="lead">What the lights on the Breville Barista Express (BES870) mean, and what Breville's instruction books suggest for a gauge that does not move, no crema, no steam, grinder trouble and leaks.</p><p><strong>Scope:</strong> the original Barista Express with a push-button panel and a pressure gauge. The newer assisted-tamping machine is a different model, covered on our <a href="/breville-barista-express-impress-troubleshooting/">Barista Express Impress page</a>. Other Breville models are on the <a href="/breville/">Breville hub</a>.</p><h2>What the lights do</h2><div class="tablewrap"><table><tr><th>Light or behaviour</th><th>What Breville says</th><th>What to do</th></tr><tr><td>POWER button flashing after switch-on</td><td>The machine is heating. The US book says all button lights come on when it is ready.</td><td>Wait. Breville gives no heat-up time for this model.</td></tr><tr><td>Steam or hot water light flashing at switch-on, machine will not heat</td><td>The steam dial is not at standby.</td><td>Turn the dial to standby.</td></tr><tr><td>CLEAN / DESCALE flashing</td><td>A cleaning cycle is due.</td><td>Run the cleaning cycle (below).</td></tr><tr><td>CLEAN / DESCALE solid</td><td>Descaling is due.</td><td>Descale (below).</td></tr><tr><td>Both filter size lights flashing</td><td>The bean hopper is not attached correctly.</td><td>Remove the hopper, check for debris, and lock it back in.</td></tr><tr><td>Steam light flashing during use</td><td>The machine is heating to make steam. Condensed water may purge from the wand, which Breville says is normal.</td><td>Wait until it stops flashing.</td></tr></table></div><p>Breville's books for this model list no other light patterns and no numbered error codes. If your machine shows something not in this table, we do not have an official meaning for it.</p><h2>Common faults</h2><div class="tablewrap"><table><tr><th>Symptom</th><th>Causes Breville lists</th><th>Suggested fix</th></tr><tr><td>No crema</td><td>Light tamp, grind too coarse, old beans or old pre-ground coffee, blocked filter holes.</td><td>Use freshly roasted beans or pre-ground coffee used within a week of grinding, grind finer, tamp firmer (US book: 30 to 40 lb, 15 to 20 kg). Clear blocked filter holes with the pin on the cleaning tool.</td></tr><tr><td>Pressure gauge needle not moving</td><td>Dose too small or wrong, beans past their roast-date window, grind too coarse.</td><td>Use the Razor tool to check the dose, use freshly roasted coffee (the book says within four weeks of the roast date), grind finer. To test the gauge itself, Breville says to run a shot with a rubber disc in the one-cup basket and no coffee: if the needle moves, the gauge works.</td></tr><tr><td>Coffee only drips or does not flow</td><td>Grind too fine, too much coffee, tamped too hard, blocked basket, empty or loose water tank, scale.</td><td>Grind slightly coarser, lower the dose, tamp within 30 to 40 lb, refill and push the tank down to lock, clear the basket holes with the cleaning tool pin, descale if due.</td></tr><tr><td>Espresso runs through too fast</td><td>Grind too coarse, too little coffee, tamp too light.</td><td>Grind finer, raise the dose, tamp firmer.</td></tr><tr><td>Water or coffee around the portafilter</td><td>Portafilter not fully locked, grounds on the basket rim, too much coffee, worn silicone seal around the shower screen.</td><td>Wipe the rim, lock the portafilter until it resists, lower the dose. Breville points to the seal replacement steps in the manual.</td></tr><tr><td>Water in the drip tray, apparent leak</td><td>The machine purges water after shots, hot water and steam. Also: drip tray not pushed in, water tank not seated, worn seal.</td><td>Empty the drip tray often and push it fully in. Re-seat the tank.</td></tr><tr><td>No steam</td><td>Not yet up to temperature, empty or loose tank, scale, blocked steam wand, dial not on steam.</td><td>Wait for the steam light to stop flashing, clear the wand tip with the cleaning tool pin (power off and cool first), turn the dial fully to the steam position.</td></tr><tr><td>Pulsing or pumping noise</td><td>Breville calls this normal for the 15 bar pump. It also lists an empty tank or one not locked in.</td><td>No action for normal pump sound. Fill the tank and push it down to lock.</td></tr><tr><td>Machine on but stops working</td><td>Thermal cut-out after pump or grinder overheating.</td><td>Switch off, unplug, allow about 30 to 60 minutes to cool. If it persists, call Breville.</td></tr><tr><td>No ground coffee from the grinder</td><td>Empty hopper, blocked chute, moisture in the grinder.</td><td>Fill the hopper, clear the chamber and chute. Breville says to make sure the burrs are completely dry before reassembly.</td></tr><tr><td>Loud grinder noise or ratchet sound</td><td>Blockage or foreign object. Breville's AU/NZ book says to switch off at once.</td><td>AU/NZ book: remove the hopper and clear the chute, then take out the upper burr and clear the lower one.</td></tr><tr><td>Grinder safety clutch has activated</td><td>Overfilled basket backing up into the chute.</td><td>Clean the grinder and chamber (AU/NZ book).</td></tr><tr><td>Too much or too little coffee in the basket or cup</td><td>Grind amount, grind size or shot volume settings need adjusting.</td><td>Per Breville: reset to defaults, re-program the shot volume, or adjust grind amount and size, one at a time.</td></tr></table></div><h2>Cleaning cycle, descaling and reset</h2><h3>Cleaning cycle (flashing light)</h3><ol><li>Put the 1 CUP filter basket in the portafilter, then the cleaning disc, then one cleaning tablet. Lock the portafilter into the group head and put a large container underneath.</li><li>Fill the tank with cold water and empty the drip tray.</li><li>Switch the machine off with the POWER button.</li><li>Hold 1 CUP, 2 CUP and POWER together. The AU/NZ book says 3 seconds. The US book says about 10 seconds.</li><li>The cycle runs about 5 minutes, with water flowing from the portafilter spouts now and then, and ends with two beeps. Check the tablet has dissolved. If not, repeat.</li></ol><h3>Descaling (solid light)</h3><p>Both the US and AU/NZ books say to take the water filter out of the tank first and to dissolve one Breville descaling powder sachet in 1 litre of water in the tank. With the machine off, press and hold 2 CUP and POWER to enter descale mode. The POWER button flashes while it heats. It is ready when the POWER, 1 CUP, CLEAN / DESCALE and steam / hot water lights are solid. Then:</p><ol><li>Press 1 CUP for the coffee part, about 25 seconds.</li><li>Turn the steam dial right for the steam part, about 13 seconds.</li><li>Turn the dial left for the hot water part, about 8 seconds.</li><li>About half the solution should be left. Repeat the three parts to empty the tank.</li><li>Remove the tank, rinse it, refill it with fresh cold water to the maximum mark, and repeat the three parts to rinse the machine.</li><li>Press POWER to exit.</li></ol><p>The books say the machine switches off after 5 minutes with no input, and that you then restart from the entry step. They also say not to immerse the cord, plug or machine in water. Those figures come from BES870 books only; do not assume they apply to other models.</p><h3>Resetting the machine</h3><p>The US book resets the 1 CUP and 2 CUP shot volumes and the default espresso water temperature: hold the PROGRAM button until the machine beeps three times, then release. It gives the default volumes as about 1 oz (30 ml) for one cup and 2 oz (60 ml) for two. We found no official full factory reset or sequence that clears the CLEAN / DESCALE light other than finishing the cleaning or descale cycle.</p><p class="note">Safety: unplug the machine and let it cool before cleaning the steam wand, and never put the cord, plug or machine in water. The steam wand and group head are hot. If a fault persists, contact Breville Consumer Support.</p><h2>Things we could not verify</h2><ul><li><strong>A specific low-pressure fix.</strong> Breville's tables have no entry called low pressure. The closest is "Pressure Gauge is not working", covered above. We give no adjustment steps for the pump or pressure valve.</li><li><strong>A time for heat-up.</strong> The BES870 books do not state one for the power button flash.</li></ul><p>Related: <a href="/breville/">Breville hub</a> and the <a href="/error-codes/">error codes index</a>.</p><h2>Questions</h2><details class="faq" open><summary>Why is the CLEAN / DESCALE light flashing on my Barista Express?</summary><p>Breville says a flashing light means the machine wants a cleaning cycle. That is a back-flush with a cleaning tablet and the supplied cleaning disc, and it is separate from descaling. A solid light means descaling is due.</p></details><details class="faq"><summary>Why is there no crema?</summary><p>Breville lists stale beans or old pre-ground coffee, a grind that is too coarse, tamping that is too light, and blocked filter basket holes. The US book also gives a freshness guide: whole beans with a roast date, used 5 to 20 days after it, and pre-ground coffee used within a week of grinding.</p></details><details class="faq"><summary>Why does the steam light flash when I switch the machine on?</summary><p>Breville gives one cause for the BES870: the steam dial is not in the standby position. Turn it to standby and the machine heats up normally. During normal heating the power button also flashes until the machine is ready.</p></details><details class="faq"><summary>The machine is on but stopped working. What now?</summary><p>Breville says a thermal cut-out may have tripped because the pump or grinder overheated. Switch off, unplug, and wait 30 to 60 minutes. If it keeps happening, contact Breville support.</p></details><details class="faq"><summary>Does Breville list an error code for the Barista Express?</summary><p>Not in the instruction books we read. The BES870 books describe problems through lights and a pressure gauge, with no numbered codes.</p></details><details class="faq"><summary>What about a Sage-branded Barista Express?</summary><p>We read Breville BES870 instruction books only. If your machine carries the Sage name, we did not read a Sage book for it, so check your own manual where a step differs.</p></details><h2>Sources</h2><p class="note">Breville instruction books: <a href="https://assets.breville.com/BES870/BES870_USCM_IB_O21.pdf" rel="noopener">BES870 (US/CA/MX)</a>; <a href="https://assets.breville.com/BES870/BES870_ANZ_IB_P22_FA_Online.pdf" rel="noopener">BES870 (Australia and New Zealand)</a>. Page numbers and button steps differ by edition. CodeFix is independent and not affiliated with Breville or Sage.</p><p><a href="/breville/">All Breville pages →</a></p><div class="ad adunit" data-kind="foot" aria-label="Advertisement"></div></main><footer class="site"><div class="in"><div class="cols"><div><h2>Brands</h2><ul><li><a href="/breville/">Breville / Sage</a></li><li><a href="/jura/">Jura</a></li><li><a href="/philips-saeco/">Philips / Saeco</a></li><li><a href="/delonghi/">De&#39;Longhi</a></li><li><a href="/ge/">GE Appliances</a></li><li><a href="/samsung/">Samsung</a></li><li><a href="/nespresso/">Nespresso</a></li><li><a href="/miele/">Miele</a></li><li><a href="/sunbeam/">Sunbeam</a></li></ul></div><div><h2>Faults by part</h2><ul><li><a href="/faults/temperature-sensor-faults/">Temperature sensors</a></li><li><a href="/faults/grinder-faults/">Grinders and dosing</a></li><li><a href="/faults/brew-group-and-valve-faults/">Brew group and valves</a></li><li><a href="/faults/pump-flow-and-water-faults/">Pumps, flow and water</a></li><li><a href="/faults/boiler-thermoblock-and-heater-faults/">Boilers and heaters</a></li><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a></li></ul></div><div><h2>CodeFix</h2><ul><li><a href="/guides/">Guides</a></li><li><a href="/supplies/">Supplies</a></li><li><a href="/error-codes/">All error codes</a></li><li><a href="https://blog.codefixcoffee.com/">Blog</a></li><li><a href="/au/">Australia</a></li><li><a href="/about/">About</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="legal">CodeFix is an independent repair reference and is not affiliated with any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty and appliances carry mains voltage. Last reviewed 2026-10-09. As an Amazon Associate I earn from qualifying purchases.</div></div></footer><script>
+    // Amazon in-text sentences and one slim strip between sections, from the JSON written by AmazonBlocks.astro.
+    (function () {
+      var d = document.getElementById('amz-data'); if (!d) return;
+      var D; try { D = JSON.parse(d.textContent); } catch (e) { return; }
+      var TAG = 'codefixcoffee-20';
+      function link(q, label) { var a = document.createElement('a'); a.href = 'https://www.amazon.com/s?k=' + encodeURIComponent(q) + '&tag=' + TAG; a.rel = 'sponsored nofollow noopener'; a.target = '_blank'; a.textContent = label; return a; }
+      function norm(t) { return (t || '').replace(/\s+/g, ' ').trim(); }
+      function find(phrase) {
+        var main = document.querySelector('main'); if (!main) return null;
+        var els = main.querySelectorAll('p, li, td, dd, div'), best = null;
+        for (var i = 0; i < els.length; i++) { var e = els[i]; if (e.closest('.amz, .affnote')) continue; if (norm(e.textContent).indexOf(phrase) > -1 && (!best || best.contains(e))) best = e; }
+        return best;
+      }
+      function run() {
+        D.inline.forEach(function (it) {
+          var host = find(it.after); if (!host) return;
+          var p = document.createElement('p'); p.className = 'amz-inline';
+          var i = it.text.indexOf(it.label);
+          if (i > -1) { p.appendChild(document.createTextNode(it.text.slice(0, i))); p.appendChild(link(it.q, it.label)); p.appendChild(document.createTextNode(it.text.slice(i + it.label.length))); }
+          else { p.appendChild(document.createTextNode(it.text + ' ')); p.appendChild(link(it.q, it.label)); }
+          var n = document.createElement('small'); n.textContent = ' (affiliate link)'; p.appendChild(n);
+          host.parentNode.insertBefore(p, host.nextSibling);
+        });
+        var h2 = document.querySelectorAll('main h2:not(.amz *)');
+        if (D.panel && h2.length >= 4 && D.items && D.items.length) {
+          var s = document.createElement('aside'); s.className = 'amz-strip'; s.setAttribute('aria-label', 'Affiliate note');
+          var t = document.createElement('p'); t.appendChild(document.createTextNode('Supplies named in the sources for this page: '));
+          D.items.slice(0, 3).forEach(function (it, k) { if (k) t.appendChild(document.createTextNode(', ')); t.appendChild(link(it.q, it.label)); });
+          t.appendChild(document.createTextNode('.')); s.appendChild(t);
+          var sm = document.createElement('small'); sm.textContent = 'As an Amazon Associate I earn from qualifying purchases.'; s.appendChild(sm);
+          h2[Math.min(2, h2.length - 1)].parentNode.insertBefore(s, h2[Math.min(2, h2.length - 1)]);
+        }
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+    })();
+  </script></body></html>
