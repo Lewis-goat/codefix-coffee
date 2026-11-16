@@ -378,12 +378,50 @@ const haveDe = false;
     q.addEventListener('focus', function () { load(function () {}); });
     q.addEventListener('input', function () { load(run); });
   })();
-</script><h2>Part group</h2><ul><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a><small>28 codes compared across brands</small></li></ul><h2>Related on this part</h2><ul><li><a href="/breville/oracle-jet-bes985/e9/">E9</a><small>Electrical fast protection triggered during heater operation</small></li><li><a href="/breville/oracle-jet-bes985/e15/">E15</a><small>Zero-cross electrical signal not detected during manual operation (third-party table only; unverified)</small></li></ul></div></aside></div><div class="ad adunit" data-kind="foot" aria-label="Advertisement"></div></main><footer class="site"><div class="in"><div class="cols"><div><h2>Brands</h2><ul><li><a href="/breville/">Breville / Sage</a></li><li><a href="/jura/">Jura</a></li><li><a href="/philips-saeco/">Philips / Saeco</a></li><li><a href="/delonghi/">De&#39;Longhi</a></li><li><a href="/ge/">GE Appliances</a></li><li><a href="/samsung/">Samsung</a></li><li><a href="/nespresso/">Nespresso</a></li><li><a href="/miele/">Miele</a></li><li><a href="/sunbeam/">Sunbeam</a></li></ul></div><div><h2>Faults by part</h2><ul><li><a href="/faults/temperature-sensor-faults/">Temperature sensors</a></li><li><a href="/faults/grinder-faults/">Grinders and dosing</a></li><li><a href="/faults/brew-group-and-valve-faults/">Brew group and valves</a></li><li><a href="/faults/pump-flow-and-water-faults/">Pumps, flow and water</a></li><li><a href="/faults/boiler-thermoblock-and-heater-faults/">Boilers and heaters</a></li><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a></li></ul></div><div><h2>CodeFix</h2><ul><li><a href="/guides/">Guides</a></li><li><a href="/supplies/">Supplies</a></li><li><a href="/error-codes/">All error codes</a></li><li><a href="https://blog.codefixcoffee.com/">Blog</a></li><li><a href="/au/">Australia</a></li><li><a href="/about/">About</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="legal">CodeFix is an independent repair reference and is not affiliated with any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty and appliances carry mains voltage. Last reviewed 2026-10-09. As an Amazon Associate I earn from qualifying purchases.</div></div></footer><script>
+</script><h2>Part group</h2><ul><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a><small>28 codes compared across brands</small></li></ul><h2>Related on this part</h2><ul><li><a href="/breville/oracle-jet-bes985/e9/">E9</a><small>Electrical fast protection triggered during heater operation</small></li><li><a href="/breville/oracle-jet-bes985/e15/">E15</a><small>Zero-cross electrical signal not detected during manual operation (third-party table only; unverified)</small></li></ul></div></aside></div><aside class="fb" id="fb" data-path="/breville/oracle-jet-bes985/e19/" hidden aria-label="Page feedback"><p class="fb-q" id="fb-q">Did this page help you fix the problem?</p><div class="fb-row" id="fb-row"><button type="button" class="fb-b" data-v="yes">Yes</button><button type="button" class="fb-b" data-v="no">No</button></div><div class="fb-note" id="fb-note" hidden><label for="fb-text">What happened? Your machine model and the code or light you see help us fix this page. Please do not include personal details.</label><textarea id="fb-text" maxlength="500" rows="3"></textarea><div class="fb-row"><button type="button" class="fb-b" id="fb-send">Send</button><button type="button" class="fb-b fb-ghost" id="fb-skip">Skip</button></div></div><p class="fb-done" id="fb-done" hidden></p></aside><style>
+    .fb { margin: 36px 0 8px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--wash); }
+    .fb p { margin: 0 0 10px; font-weight: 600; }
+    .fb-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .fb-b { font: inherit; padding: 8px 20px; border: 1px solid var(--accent); background: var(--paper); color: var(--accent-dark); border-radius: var(--r); cursor: pointer; }
+    .fb-b:hover, .fb-b:focus-visible { background: var(--accent-wash); }
+    .fb-ghost { border-color: var(--line); color: var(--muted); }
+    .fb-note label { display: block; font-size: 14.5px; color: var(--ink2); margin: 0 0 8px; }
+    .fb-note textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 8px; border: 1px solid var(--line); border-radius: var(--r); margin-bottom: 10px; }
+    .fb-done { color: var(--ok); }
+  </style><script>
+    (function () {
+      var box = document.getElementById('fb'); if (!box) return;
+      var path = box.getAttribute('data-path'), KEY = 'fb:' + path;
+      try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+      var q = document.getElementById('fb-q'), row = document.getElementById('fb-row'), note = document.getElementById('fb-note'), done = document.getElementById('fb-done');
+      function finish(msg) { q.hidden = true; row.hidden = true; note.hidden = true; done.textContent = msg; done.hidden = false; try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+      function send(vote, text) {
+        try { fetch('/_fb/vote', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ path: path, vote: vote, note: text || '' }), keepalive: true }).catch(function () {}); } catch (e) {}
+      }
+      row.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-v]'); if (!b) return;
+        if (b.getAttribute('data-v') === 'yes') { send('yes'); finish('Thanks. Glad it helped.'); }
+        else { row.hidden = true; q.textContent = 'Sorry about that.'; note.hidden = false; document.getElementById('fb-text').focus(); }
+      });
+      document.getElementById('fb-send').addEventListener('click', function () { send('no', document.getElementById('fb-text').value); finish('Thanks. We read every note and fix pages from them.'); });
+      document.getElementById('fb-skip').addEventListener('click', function () { send('no'); finish('Thanks for letting us know.'); });
+      box.hidden = false;
+    })();
+  </script><div class="ad adunit" data-kind="foot" aria-label="Advertisement"></div></main><footer class="site"><div class="in"><div class="cols"><div><h2>Brands</h2><ul><li><a href="/breville/">Breville / Sage</a></li><li><a href="/jura/">Jura</a></li><li><a href="/philips-saeco/">Philips / Saeco</a></li><li><a href="/delonghi/">De&#39;Longhi</a></li><li><a href="/ge/">GE Appliances</a></li><li><a href="/samsung/">Samsung</a></li><li><a href="/nespresso/">Nespresso</a></li><li><a href="/miele/">Miele</a></li><li><a href="/sunbeam/">Sunbeam</a></li></ul></div><div><h2>Faults by part</h2><ul><li><a href="/faults/temperature-sensor-faults/">Temperature sensors</a></li><li><a href="/faults/grinder-faults/">Grinders and dosing</a></li><li><a href="/faults/brew-group-and-valve-faults/">Brew group and valves</a></li><li><a href="/faults/pump-flow-and-water-faults/">Pumps, flow and water</a></li><li><a href="/faults/boiler-thermoblock-and-heater-faults/">Boilers and heaters</a></li><li><a href="/faults/control-board-display-and-electrical-faults/">Boards, panels and electrical</a></li></ul></div><div><h2>CodeFix</h2><ul><li><a href="/guides/">Guides</a></li><li><a href="/supplies/">Supplies</a></li><li><a href="/error-codes/">All error codes</a></li><li><a href="https://blog.codefixcoffee.com/">Blog</a></li><li><a href="/au/">Australia</a></li><li><a href="/about/">About</a></li><li><a href="/editorial-policy/">Editorial policy</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul></div></div><div class="legal">CodeFix is an independent repair reference and is not affiliated with any manufacturer. Service-mode instructions are for information; opening a machine may void its warranty and appliances carry mains voltage. Last reviewed 2026-11-16. As an Amazon Associate I earn from qualifying purchases.</div></div></footer><script>
+    // Anonymous counter for Amazon link clicks (page + tracking ID only), sent to the same-origin Worker. No cookies, no identifiers.
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href*="amazon.com/s?"]'); if (!a) return;
+      var m = /[?&]tag=([a-z0-9-]+)/.exec(a.href); if (!m) return;
+      var body = JSON.stringify({ path: location.pathname, kind: 'amz', tag: m[1] });
+      try { if (navigator.sendBeacon) { navigator.sendBeacon('/_fb/ev', new Blob([body], { type: 'application/json' })); return; } } catch (err) {}
+      try { fetch('/_fb/ev', { method: 'POST', headers: { 'content-type': 'application/json' }, body: body, keepalive: true }); } catch (err) {}
+    }, true);
+  </script><script>
     // Amazon in-text sentences and one slim strip between sections, from the JSON written by AmazonBlocks.astro.
     (function () {
       var d = document.getElementById('amz-data'); if (!d) return;
       var D; try { D = JSON.parse(d.textContent); } catch (e) { return; }
-      var TAG = 'codefixcoffee-20';
+      var TAG = D.tag || 'codefixcoffee-20';
       function link(q, label) { var a = document.createElement('a'); a.href = 'https://www.amazon.com/s?k=' + encodeURIComponent(q) + '&tag=' + TAG; a.rel = 'sponsored nofollow noopener'; a.target = '_blank'; a.textContent = label; return a; }
       function norm(t) { return (t || '').replace(/\s+/g, ' ').trim(); }
       function find(phrase) {
